@@ -24,8 +24,8 @@ const Header = () => {
         <div className='list-con2'>
            <ul>
             <li><input type="search" /></li>
-            <li><Link><img src={CartLogo} alt="" /></Link></li>
-            <li><Link><img src={userlogo} alt="" /></Link></li>
+            <li><Link to='/cart'><img src={CartLogo} alt="" /></Link></li>
+            <li><Link to='/login'><img src={userlogo} alt="" /></Link></li>
            </ul>
         </div>
       </nav>
