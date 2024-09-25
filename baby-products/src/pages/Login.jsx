@@ -1,8 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <section>
+      <div>
+        <div>
+            <h1>Login</h1>
+        </div>
+      </div>
+    </section>
   )
 }
 

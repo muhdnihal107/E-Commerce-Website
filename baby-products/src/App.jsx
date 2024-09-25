@@ -1,4 +1,4 @@
-import { Route, Routes} from "react-router-dom"
+import { Route, Routes, useLocation} from "react-router-dom"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
@@ -11,9 +11,12 @@ import Footer from "./components/Footer"
 
 
 function App() {
+  const location = useLocation();
+   const noHeaderFooterPaths = ['/register','/login'];
 
   return (
-    <><Header />
+    <>
+    {!noHeaderFooterPaths.includes(location.pathname) && <Header />}
     <Routes>
       
       <Route exact path="/" element={<Home />}/>
@@ -25,7 +28,7 @@ function App() {
       <Route path="/checkout" element={<Checkout />}/>
     
     </Routes>
-    <Footer />
+    {!noHeaderFooterPaths.includes(location.pathname) && <Footer />}
       
     </>
   )

@@ -236,3 +236,91 @@
     object-fit: cover;
     border-radius: 20px;
   }
+  /*.....................Register form................*/
+ /* Registration Section */
+.reg-section {
+  background: linear-gradient(to bottom right, #b892ff, #8deaff); /* Semi-transparent white background */
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern look */
+  margin: 20px auto;
+}
+
+/* Heading inside form */
+.reg-section h1 {
+  color: #5f27cd; /* Light purple matching your image */
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form groups (labels + input fields) */
+.reg-form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels styling */
+.reg-form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #3b3b98; /* A deep purple for labels */
+  margin-bottom: 8px;
+}
+
+/* Input fields */
+.reg-form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d8e0;
+  border-radius: 8px;
+  background-color: #f1f2f6; /* Light background for input fields */
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+
+/* Input focus styling */
+.reg-form-group input:focus {
+  border-color: #8338ec; /* Vibrant purple border on focus */
+  outline: none;
+}
+
+/* Error or Helper text */
+.reg-form-group span {
+  font-size: 0.85rem;
+  color: #ff6b6b; /* Error text color */
+  margin-top: 5px;
+  display: none;
+}
+.reg-form-group input:invalid[focus='true'] ~ span{
+  display: block;
+}
+.reg-form-group input:invalid[focus='true']{
+  border: 1px solid red;
+}
+/* Button container */
+.reg-btn-con {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Submit button styling */
+.reg-btn-con button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #167bee; /* Bright cyan for the button */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect on button */
+.reg-btn-con button:hover {
+  background-color: #0abde3; /* Darker cyan on hover */
+}
+
