@@ -1,0 +1,76 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Baby Stroller",
+        "description": "Comfortable stroller for your baby",
+        "price": 99.99,
+        "image": "/assets/products/stroller.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Baby Diapers",
+        "description": "Soft and absorbent diapers",
+        "price": 25.50,
+        "image": "/assets/products/diapers.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Baby Bottle",
+        "description": "Eco-friendly baby bottle",
+        "price": 15.00,
+        "image": "/assets/products/bottle.webp"
+      },
+      {
+        "id": 4,
+        "name": "Plush Sheep Toy",
+        "description": "A soft and cuddly plush sheep toy with a big smile.",
+        "price": 12.99,
+        "image": "/assets/products/sheep-toy.png"
+      },
+      {
+        "id": 5,
+        "name": "Ride-on Toy Car",
+        "description": "A fun and engaging green ride-on toy police car for toddlers",
+        "price": 45.00,
+        "image": "/assets/products/toy-car.png"
+      },
+      {
+        "id": 6,
+        "name": "Baby Bandana",
+        "description": "Vibrant and playful baby bandana with a colorful duck pattern",
+        "price": 7.00,
+        "image": "/assets/products/bandana.png"
+      },
+      {
+        "id": 7,
+        "name": "Soft Cotton Baby Romper",
+        "description": "A cozy and comfortable baby romper made from 100% soft cotton",
+        "price": 14.00,
+        "image": "/assets/products/romper.png"
+      },
+      {
+        "id": 8,
+        "name": "Green Baby Boots",
+        "description": "Soft, comfortable green boots for your baby.",
+        "price": 45.00,
+        "image": "/assets/products/boots.png"
+      },
+      {
+        "id": 9,
+        "name": "Baby Lotion",
+        "description": "Gentle moisturizing lotion for babies.",
+        "price": 12.00,
+        "image": "/assets/products/lotion.jpeg"
+      },
+      {
+        "id": 10,
+        "name": "Baby Shoes",
+        "description": "Soft, comfortable green boots for your baby.",
+        "price": 14.00,
+        "image": "/assets/products/shoes.png"
+      }
+      
+    ]
+  }
+  
