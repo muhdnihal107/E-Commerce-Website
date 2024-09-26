@@ -324,3 +324,98 @@
   background-color: #0abde3; /* Darker cyan on hover */
 }
 
+/*................................login page...........*/
+/* Login Page Section */
+.login-page {
+  background: linear-gradient(to bottom right, #b892ff, #8deaff); /* Semi-transparent white background */
+
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern look */
+  margin: 20px auto;
+}
+
+/* Login Section */
+.login-sec {
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+  border-radius: 15px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Login Header */
+.login-head h1 {
+  color: #5f27cd; /* Light purple matching the registration form */
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form Group for inputs */
+.login-form-group {
+  margin-bottom: 15px;
+}
+
+.login-form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d8e0;
+  border-radius: 8px;
+  background-color: #f1f2f6; /* Light background for input fields */
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect on input fields */
+.login-form-group input:focus {
+  border-color: #8338ec; /* Purple border on focus */
+  outline: none;
+}
+
+/* Submit button styling */
+.sign-btn {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #48dbfb; /* Cyan button */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.sign-btn:hover {
+  background-color: #0abde3; /* Darker cyan on hover */
+}
+
+/* Error message styling */
+#login-err {
+  display: block;
+  font-size: 0.85rem;
+  color: #ff6b6b; /* Error text color */
+  margin-top: 10px;
+  text-align: center;
+  visibility: hidden; /* Hidden by default */
+}
+
+/* Show error message */
+#login-err.show {
+  visibility: visible; /* Visible if login fails */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .sign-btn {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}

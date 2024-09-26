@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link, useNavigate} from 'react-router-dom'
 
 const Register = () => {
   const [inputs,setInputs] =useState({
@@ -14,16 +15,21 @@ const Register = () => {
     errcpassword: false
 
   });
+  const navigate = useNavigate();
   
   const handleSubmit =(e)=>{
     e.preventDefault();
     console.log(inputs);
+    navigate('/login');
     
   }
   
   const handleChange =(e)=>{
     const name = e.target.name;
     const value = e.target.value;
+    localStorage.setItem('registeredUser', JSON.stringify(inputs));
+    console.log(inputs);
+    
      setInputs({...inputs,[name]: value})
   }
   return (
@@ -97,6 +103,7 @@ const Register = () => {
         </div>
         <div className='reg-btn-con'>
            <button type='submit'>Sign Up</button>
+           <p className='navigate-txt'>Already have an account?<Link to={'/login'}>Log In</Link></p>
         </div>
         
       </form>
