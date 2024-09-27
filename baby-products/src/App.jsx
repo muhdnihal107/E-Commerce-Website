@@ -8,6 +8,7 @@ import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import ProductProvider from "./context/ProductContext"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+    <ProductProvider>
     {!noHeaderFooterPaths.includes(location.pathname) && <Header />}
     <Routes>
       
@@ -29,6 +31,8 @@ function App() {
     
     </Routes>
     {!noHeaderFooterPaths.includes(location.pathname) && <Footer />}
+    </ProductProvider>
+    
       
     </>
   )
