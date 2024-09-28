@@ -1,26 +1,30 @@
 import React, { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
+import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 
 
 const ProductList = () => {
   const { products,loading } =useContext(ProductContext);
-  const imagePath = require(`..${image}`);
+  const { addToCart } = useContext(CartContext);
+  
   if(loading){
     return <> <h3>Products are loading </h3></>
   }
   return (
     
-    <div>
+    <div className='product-container'>
       <h1>SHOP</h1>
       {products.length > 0 ? (products.map(product=>{
         
         return(
-         <div key={product.id} style={styles.productCard}>
-            <img src={imagePath.default} alt={product.name} />
+         <div key={product.id} className='product-card'>
+          <Link to={`/product/${product.id}`}> <img src={product.image} alt={product.name} /> </Link>  
             <h2>{product.name}</h2>
               <p>{product.description}</p>
               <p><strong>${product.price.toFixed(2)}</strong></p>
+              <button className='add-to-cart-btn' onClick={()=>addToCart(product)}>Add to cart</button>
          </div>
                                                                            
   ); 
@@ -30,20 +34,6 @@ const ProductList = () => {
   );
   
 }
-const styles = {
-    productCard: {
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '20px',
-      textAlign: 'center',
-      margin: '10px',
-      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-    },
-    productImage: {
-      width: '100%',
-      height: '150px',
-      objectFit: 'cover',
-    },
-  };
+
 export default ProductList
 //this is my product list

@@ -8,7 +8,7 @@ const ProductProvider = ({children}) => {
 
     const fetchProducts = async ()=>{
         try{
-          const responce = await axios.get('http://localhost:5000/products');
+          const responce = await axios.get('http://localhost:3000/products');
           setProducts(responce.data);
           setLoading(false);  
         }catch (error){
