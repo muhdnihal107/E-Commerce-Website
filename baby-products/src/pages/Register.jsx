@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Link, useNavigate} from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
   const [inputs,setInputs] =useState({
@@ -7,7 +8,7 @@ const Register = () => {
     email: '',
     password: '',
     cpassword: ''
-  })
+  });
   const [focus,setFocus] = useState({
     errname: false,
     erremail: false,
@@ -15,11 +16,13 @@ const Register = () => {
     errcpassword: false
 
   });
+  const {register} =useContext(AuthContext);
   const navigate = useNavigate();
   
   const handleSubmit =(e)=>{
     e.preventDefault();
     console.log(inputs);
+    register(inputs);
     navigate('/login');
     
   }
@@ -27,10 +30,9 @@ const Register = () => {
   const handleChange =(e)=>{
     const name = e.target.name;
     const value = e.target.value;
-    localStorage.setItem('registeredUser', JSON.stringify(inputs));
     console.log(inputs);
     
-     setInputs({...inputs,[name]: value})
+     setInputs({...inputs,[name]: value});
   }
   return (
     <section className='reg-section'>

@@ -1,11 +1,15 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+
+
 const Login = () => {
   const [inputs,setInputs] = useState({
     email: '',
     password: ''
-  })
+  });
   const [loginerr,setLoginerr] = useState(false);
+  const {login} = useContext(AuthContext);
   const navigate = useNavigate();
   
   
@@ -16,8 +20,8 @@ const Login = () => {
   }
   const handleSubmit = (e)=>{
     e.preventDefault();
-    const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
-    if((registeredUser && inputs.email === registeredUser.email && inputs.password === registeredUser.password)){
+    const success = login(inputs.email, inputs.password);
+    if(success){
       console.log('you are sucessfully loged in');
       setLoginerr(false);
       navigate('/');

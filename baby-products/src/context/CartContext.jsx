@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -7,6 +7,28 @@ export const CartContext = createContext();
 const CartProvider = ({children}) => {
     const [cart,setCart] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const storedCart =localStorage.getItem("cart");
+        if(storedCart){
+            setCart(JSON.parse(storedCart));
+        }
+    },[]);
+
+    useEffect(()=>{
+        if(cart.length > 0){
+            localStorage.setItem("cart",JSON.stringify(cart));
+
+        }
+    },[cart]);
+
+    const calculateTotal =()=>{
+        const subTotal = cart.reduce((total,item)=> total + item.price * item.quantity,0);
+        const tax = subTotal * 0.05;
+        const total = subTotal + tax;
+        return { subTotal, tax, total}
+    }
+
    const addToCart=(product)=>{
        setCart((prevCart)=>{
         const existItem = prevCart.find((item)=> item.id === product.id);
@@ -50,7 +72,7 @@ const CartProvider = ({children}) => {
 };
 
   return (
-    <CartContext.Provider value={{cart,addToCart,removeFromCart,clearCart,increaseQuantity,decreaseQuantity}}>
+    <CartContext.Provider value={{cart,calculateTotal ,addToCart,removeFromCart,clearCart,increaseQuantity,decreaseQuantity}}>
         {children}
     </CartContext.Provider>
   )
