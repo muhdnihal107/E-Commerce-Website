@@ -8,7 +8,19 @@ import { CartContext } from '../context/CartContext';
 const ProductList = () => {
   const { products,loading } =useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
-  
+   
+/*  useEffect(() => {
+    if (searchTerm) {
+      const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(products); // Show all products if no search term
+    }
+  }, [searchTerm, products]); */
+
   if(loading){
     return <> <h3>Products are loading </h3></>
   }

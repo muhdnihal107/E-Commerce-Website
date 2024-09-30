@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react'
 
 
@@ -15,23 +16,42 @@ const [isAuthenticated,setIsAuthenticated] = useState(false);
     }
   },[])
 
-const register = (newUser)=>{
-    localStorage.setItem('user',JSON.stringify(newUser));
-    setUser(newUser);
+const register = async(newUser)=>{
+  try{
+     const responce = await axios.post('http://localhost:3000/users', newUser);
+    const registeredUser =responce.data;
+    localStorage.setItem('user',JSON.stringify(registeredUser));
+    setUser(registeredUser);
     setIsAuthenticated(true);
-}
-const login = (email ,password) =>{
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if(storedUser && storedUser.email === email && storedUser.password === password){
-        setUser(storedUser);
-        setIsAuthenticated(true);
-        return true;
+  }
+    catch(error) {
+      console.log('Error during registration:', error);
+      
     }
-    else{
+};
+const login = async(email ,password) =>{
+  try{
+      const responce = await axios.get('http://localhost:3000/users');
+      const foundUser = responce.data.find(user=> user.email === email);
+       
+      if(foundUser && foundUser.password === password){
+        setUser(foundUser);
+        setIsAuthenticated(true);
+        localStorage.setItem('user',JSON.stringify(foundUser));
+        return true;
+      }
+      else{
         setIsAuthenticated(false);
         return false;
-    }
-}
+      }
+  } catch(error){
+     console.log('error during login',error);
+     setIsAuthenticated(false);
+     return false;
+     
+  }
+   
+};
 const logout = ()=>{
     localStorage.removeItem('user');
     setUser(null);

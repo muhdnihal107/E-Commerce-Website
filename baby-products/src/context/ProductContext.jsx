@@ -4,17 +4,22 @@ import axios from 'axios';
 export const ProductContext = createContext();
 const ProductProvider = ({children}) => {
     const [products, setProducts] = useState([]);
-    const [loading,setLoading] = useState(false);
+    const [loading,setLoading] = useState(true);
 
     const fetchProducts = async ()=>{
+      setLoading(true);
         try{
-          const responce = await axios.get('http://localhost:3000/products');
+          const responce = await axios.get('http://localhost:5000/products');
           setProducts(responce.data);
-          setLoading(false);  
+           
         }catch (error){
             console.log('Error in fetching data',error);
             
+        }finally{
+          setLoading(false);
         }
+          
+        
         
     }
 

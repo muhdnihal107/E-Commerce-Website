@@ -25,7 +25,7 @@ const Register = () => {
     register(inputs);
     navigate('/login');
     
-  }
+  };
   
   const handleChange =(e)=>{
     const name = e.target.name;
@@ -33,7 +33,7 @@ const Register = () => {
     console.log(inputs);
     
      setInputs({...inputs,[name]: value});
-  }
+  };
   return (
     <section className='reg-section'>
       

@@ -1,13 +1,21 @@
 import React, { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const ProductDetails = () => {
-  const {products} = useContext(ProductContext);
+  const {products,isLoading} = useContext(ProductContext);
   const {id} = useParams();
+  const { addToCart } = useContext(CartContext);
    
   const product = products.find(prod => prod.id == parseInt(id));
    
+  if (isLoading){
+    return <div>Loading...</div>
+  }
+  if(!product){
+    return <div>Product not found.</div>
+  }
   return (
     <div className='product-details'>
       <h1>{product.name}</h1>
@@ -22,7 +30,7 @@ const ProductDetails = () => {
             vlopnis qrtzyon. Ftnzywo pxedurc kmliotp qensyo vrgtiwl. Zrikfon vlxemyu ktprinew fowlbem gryxt. Dfbliyo 
             prxenmt olpujic wezoytr kmfcyob.</p>
             <p className='prod-price'><strong>${product.price.toFixed(2)}</strong></p>
-            <button className='prod-detail-add-to-cart-btn'>Add to cart</button>
+            <button onClick={()=>addToCart(product)} className='prod-detail-add-to-cart-btn'>Add to cart</button>
         </div>
       </div>
     </div>
