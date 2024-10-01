@@ -18,6 +18,20 @@
       "email": "muhd@123",
       "password": "Muhd1234",
       "cpassword": "Muhd1234"
+    },
+    {
+      "id": "e7d9",
+      "username": "nihal",
+      "email": "abcd@12345",
+      "password": "12345Abcd",
+      "cpassword": "12345Abcd"
+    },
+    {
+      "id": "63d8",
+      "username": "nihal",
+      "email": "abc@000",
+      "password": "Muhd0000",
+      "cpassword": "Muhd0000"
     }
   ],
   "carts": [
@@ -42,6 +56,25 @@
       "id": "dbde",
       "userId": "62e3",
       "products": []
+    },
+    {
+      "id": "69be",
+      "userId": "e7d9",
+      "products": []
+    },
+    {
+      "id": "0556",
+      "userId": "63d8",
+      "products": [
+        {
+          "id": "1",
+          "name": "Baby Stroller",
+          "description": "Comfortable stroller for your baby",
+          "price": 99.99,
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "quantity": 2
+        }
+      ]
     }
   ]
 }

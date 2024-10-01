@@ -22,6 +22,7 @@ const Login = () => {
     e.preventDefault();
     const success = login(inputs.email, inputs.password);
     if(success){
+      alert('you are sucessfully loged in')
       console.log('you are sucessfully loged in');
       setLoginerr(false);
       navigate('/');

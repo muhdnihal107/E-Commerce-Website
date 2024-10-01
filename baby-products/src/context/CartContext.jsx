@@ -82,7 +82,7 @@ const CartProvider = ({children}) => {
         }
           ;
        });
-       navigate('/cart')
+      
    };
    const removeFromCart = async (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId)); 
