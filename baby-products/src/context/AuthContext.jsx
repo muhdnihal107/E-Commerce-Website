@@ -37,6 +37,8 @@ const login = async(email ,password) =>{
       if(foundUser && foundUser.password === password){
         setUser(foundUser);
         setIsAuthenticated(true);
+        console.log(isAuthenticated);
+        
         localStorage.setItem('user',JSON.stringify(foundUser));
         return true;
       }
@@ -57,6 +59,8 @@ const logout = ()=>{
     setUser(null);
     setIsAuthenticated(false);
 }
+console.log(isAuthenticated);
+
   return (
     <AuthContext.Provider value={{user, isAuthenticated, setUser,setIsAuthenticated,register,login,logout}} >
         {children}

@@ -4,9 +4,12 @@ import { AuthContext } from './AuthContext';
 import axios from 'axios';
 
 export const CartContext = createContext();
+
 const BASE_URL = 'http://localhost:3000';
 
 const CartProvider = ({children}) => {
+  const { isAuthenticated } = useContext(AuthContext);
+
     const [cart,setCart] = useState([]);
     const {user} =useContext(AuthContext);
     const navigate = useNavigate();
@@ -69,7 +72,12 @@ const CartProvider = ({children}) => {
     }
 
    const addToCart=(product)=>{
-       setCart((prevCart)=>{
+    if (!isAuthenticated){
+      alert('Please log in for add items to cart!!!');
+      console.log(`inside addtocart:${isAuthencated}` );
+      return;
+    }
+      setCart((prevCart)=>{
         const existItem = prevCart.find((item)=> item.id === product.id);
         if(existItem){
             return prevCart.map((item)=>
@@ -80,9 +88,8 @@ const CartProvider = ({children}) => {
             return  [...prevCart,{...product, quantity: 1}];
              
         }
-          ;
-       });
-      
+          
+       });   
    };
    const removeFromCart = async (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId)); 
