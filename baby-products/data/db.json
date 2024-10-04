@@ -1,0 +1,103 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "password": "hashed_password",
+      "cart": []
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "password": "hashed_password",
+      "cart": [
+        {
+          "productId": 1,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "7ce5",
+      "username": "Nihal",
+      "email": "muhd@123",
+      "password": "Muhd1234",
+      "cpassword": "Muhd1234",
+      "cart": []
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Baby Stroller",
+      "description": "Comfortable stroller for your baby",
+      "price": 99.99,
+      "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493"
+    },
+    {
+      "id": "2",
+      "name": "Baby Diapers",
+      "description": "Soft and absorbent diapers",
+      "price": 25.5,
+      "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU="
+    },
+    {
+      "id": "3",
+      "name": "Baby Bottle",
+      "description": "Eco-friendly baby bottle",
+      "price": 15,
+      "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Plush Sheep Toy",
+      "description": "A soft and cuddly plush sheep toy with a big smile.",
+      "price": 12.99,
+      "image": "https://cdn.pixabay.com/photo/2016/03/26/22/22/happy-1281590_1280.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Ride-on Toy Car",
+      "description": "A fun and engaging green ride-on toy police car for toddlers",
+      "price": 45,
+      "image": "https://baybee.co.in/cdn/shop/files/71OnZ1iQ1IL_500x.jpg?v=1697010044"
+    },
+    {
+      "id": "6",
+      "name": "Baby Bandana",
+      "description": "Vibrant and playful baby bandana with a colorful duck pattern",
+      "price": 7,
+      "image": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-10.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Soft Cotton Baby Romper",
+      "description": "A cozy and comfortable baby romper made from 100% soft cotton",
+      "price": 14,
+      "image": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-3.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Green Baby Boots",
+      "description": "Soft, comfortable green boots for your baby.",
+      "price": 45,
+      "image": "https://c.ndtvimg.com/2024-08/16f52bv8_fashion_625x300_23_August_24.jpg?im=FeatureCrop,algorithm=dnn,width=620,height=350?im=Resize=(1230,900)"
+    },
+    {
+      "id": "9",
+      "name": "Baby Lotion",
+      "description": "Gentle moisturizing lotion for babies.",
+      "price": 12,
+      "image": "https://himalayawellness.in/cdn/shop/products/baby-lotion-200ml.jpg?v=1622099789&width=540"
+    },
+    {
+      "id": "10",
+      "name": "Baby Shoes",
+      "description": "Soft, comfortable green boots for your baby.",
+      "price": 14,
+      "image": "https://littlecharlie.in/cdn/shop/products/EddieBabyShoes-White_713x.jpg?v=1645580604"
+    }
+  ]
+}

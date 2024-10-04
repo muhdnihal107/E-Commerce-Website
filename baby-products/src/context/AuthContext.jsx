@@ -18,7 +18,7 @@ const [isAuthenticated,setIsAuthenticated] = useState(false);
 
 const register = async(newUser)=>{
   try{
-     const responce = await axios.post('http://localhost:3000/users', newUser);
+     const responce = await axios.post('http://localhost:4000/users', newUser);
     const registeredUser =responce.data;
     localStorage.setItem('user',JSON.stringify(registeredUser));
     setUser(registeredUser);
@@ -31,7 +31,7 @@ const register = async(newUser)=>{
 };
 const login = async(email ,password) =>{
   try{
-      const responce = await axios.get('http://localhost:3000/users');
+      const responce = await axios.get('http://localhost:4000/users');
       const foundUser = responce.data.find(user=> user.email === email);
        
       if(foundUser && foundUser.password === password){

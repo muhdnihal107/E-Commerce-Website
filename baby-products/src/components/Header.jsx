@@ -59,7 +59,7 @@ const Header = () => {
             <li><Link to='/cart'><img className='cart-logo' src={CartLogo} alt="" /></Link></li>
             <li> <div className='user-profile' onClick={handleUserClick}>
                 {isAuthenticated ? (
-                  <span><img className='user-logo' src={userlogo} alt="User" /> {user.username}</span> // Display user name or default to "User"
+                  <span><img className='user-logo' src={userlogo} alt="User" /> {user.name}</span> // Display user name or default to "User"
                 ) : (
                   <img className='user-logo' src={userlogo} alt="User" />
                 )}
