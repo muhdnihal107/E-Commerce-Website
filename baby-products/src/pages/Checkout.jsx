@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
+import { OrderContext } from '../context/OrderContext';
 
 const Checkout = () => {
-  const { clearCart } = useContext(CartContext);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -18,14 +18,14 @@ const Checkout = () => {
     cvv: '',
     upiId: ''
   });
-
+const {PlaceOrder} = useContext(OrderContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
   
@@ -69,7 +69,12 @@ const Checkout = () => {
       upiId: '',
       bank: ''
     });
+   
+    const success = await PlaceOrder(formData);
 
+    if(success){
+      Navigate('/order');
+    }
   };
   
   return (
@@ -265,7 +270,7 @@ const Checkout = () => {
           )}
 
           <div>
-            <button className="submit-button" type="submit" onClick={clearCart}>
+            <button className="submit-button" type="submit">
               Place Order
             </button>
           </div>

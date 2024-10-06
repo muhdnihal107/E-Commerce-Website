@@ -5,19 +5,47 @@
       "name": "John Doe",
       "email": "johndoe@example.com",
       "password": "hashed_password",
-      "cart": []
+      "cart": [
+        {
+          "id": "1",
+          "name": "Baby Stroller",
+          "description": "Comfortable stroller for your baby",
+          "price": 99.99,
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Baby Diapers",
+          "description": "Soft and absorbent diapers",
+          "price": 25.5,
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "Baby Bottle",
+          "description": "Eco-friendly baby bottle",
+          "price": 15,
+          "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Plush Sheep Toy",
+          "description": "A soft and cuddly plush sheep toy with a big smile.",
+          "price": 12.99,
+          "image": "https://cdn.pixabay.com/photo/2016/03/26/22/22/happy-1281590_1280.jpg",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "2",
       "name": "Jane Smith",
       "email": "janesmith@example.com",
       "password": "hashed_password",
-      "cart": [
-        {
-          "productId": 1,
-          "quantity": 1
-        }
-      ]
+      "cart": []
     },
     {
       "id": "7ce5",
@@ -26,6 +54,103 @@
       "password": "Muhd1234",
       "cpassword": "Muhd1234",
       "cart": []
+    }
+  ],
+  "orders": [
+    {
+      "orderId": "1",
+      "userId": "1",
+      "products": [],
+      "quantity": 2,
+      "status": "Pending",
+      "orderDate": "2024-10-05"
+    },
+    {
+      "id": "1ff8",
+      "orderId": "1728199696067",
+      "userId": "2",
+      "products": [
+        {
+          "quantity": 1
+        },
+        {
+          "quantity": 1
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-06",
+      "firstName": "muhammed ",
+      "lastName": "nihal",
+      "phoneNumber": "9072733107",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "creditCard",
+      "cardNumber": "12346",
+      "expiryDate": "123/456",
+      "cvv": "12345",
+      "upiId": ""
+    },
+    {
+      "id": "228e",
+      "orderId": "1728216357214",
+      "userId": "2",
+      "products": [
+        {
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "productId": "2",
+          "quantity": 2
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-06",
+      "firstName": "abs",
+      "lastName": "mnb",
+      "phoneNumber": "9874",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "creditCard",
+      "cardNumber": "1234",
+      "expiryDate": "12/36",
+      "cvv": "1234",
+      "upiId": ""
+    },
+    {
+      "id": "edef",
+      "orderId": "1728216618657",
+      "userId": "2",
+      "products": [
+        {
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "productId": "1",
+          "quantity": 1
+        },
+        {
+          "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg",
+          "productId": "3",
+          "quantity": 1
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-06",
+      "firstName": "abs",
+      "lastName": "plo",
+      "phoneNumber": "123",
+      "email": "mnr@123",
+      "address": "jgytbnkjnknkjmugvb",
+      "city": "loki",
+      "state": "kerala",
+      "pincode": "12346",
+      "paymentMethod": "creditCard",
+      "cardNumber": "123",
+      "expiryDate": "12/369874",
+      "cvv": "9874",
+      "upiId": ""
     }
   ],
   "products": [

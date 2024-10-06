@@ -1,23 +1,29 @@
-import React from 'react'
-import bellLogo from '../assets/bell.png'
-import searchLogo from '../assets/search.png'
-import profileLogo from '../assets/account.png'
+import React from 'react';
+import bellLogo from '../assets/bell.png';
+import searchLogo from '../assets/search.png';
+import profileLogo from '../assets/account.png';
 
 const AdminHeader = () => {
   return (
-    <header>
-        <div>
-          <h1></h1>
-        </div>
-        <div>
-          <ul>
-            <li><img src={searchLogo} alt="search-logo" /></li>
-            <li><img src={bellLogo} alt="bell-logo" /></li>
-            <li><img src={profileLogo} alt="profile-logo" /></li>
-          </ul>
-        </div>
+    <header className="bg-gray-200 text-gray-800 flex items-center justify-between p-4 shadow"> {/* Changed to a lighter gray */}
+      <div className="flex items-center">
+        <h1 className="text-xl font-bold">Admin Panel</h1>
+      </div>
+      <div>
+        <ul className="flex space-x-4">
+          <li>
+            <img src={searchLogo} alt="Search" className="h-6 w-6 hover:opacity-75 transition duration-200" />
+          </li>
+          <li>
+            <img src={bellLogo} alt="Notifications" className="h-6 w-6 hover:opacity-75 transition duration-200" />
+          </li>
+          <li>
+            <img src={profileLogo} alt="Profile" className="h-6 w-6 hover:opacity-75 transition duration-200" />
+          </li>
+        </ul>
+      </div>
     </header>
-  )
+  );
 }
 
-export default AdminHeader
+export default AdminHeader;
