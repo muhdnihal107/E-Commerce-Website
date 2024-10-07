@@ -54,48 +54,20 @@
       "password": "Muhd1234",
       "cpassword": "Muhd1234",
       "cart": []
+    },
+    {
+      "id": "ce99",
+      "username": "jack",
+      "email": "jack@123",
+      "password": "Jack1234",
+      "cpassword": "Jack1234",
+      "cart": []
     }
   ],
   "orders": [
     {
-      "orderId": "1",
-      "userId": "1",
-      "products": [],
-      "quantity": 2,
-      "status": "Pending",
-      "orderDate": "2024-10-05"
-    },
-    {
-      "id": "1ff8",
-      "orderId": "1728199696067",
-      "userId": "2",
-      "products": [
-        {
-          "quantity": 1
-        },
-        {
-          "quantity": 1
-        }
-      ],
-      "status": "Pending",
-      "orderDate": "2024-10-06",
-      "firstName": "muhammed ",
-      "lastName": "nihal",
-      "phoneNumber": "9072733107",
-      "email": "muhdnihal132@gmail.com",
-      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
-      "city": "Mooniyur",
-      "state": "Kerala",
-      "pincode": "676311",
-      "paymentMethod": "creditCard",
-      "cardNumber": "12346",
-      "expiryDate": "123/456",
-      "cvv": "12345",
-      "upiId": ""
-    },
-    {
       "id": "228e",
-      "orderId": "1728216357214",
+      "orderId": "1728",
       "userId": "2",
       "products": [
         {
@@ -106,6 +78,9 @@
       ],
       "status": "Pending",
       "orderDate": "2024-10-06",
+      "subtotal": 51,
+      "tax": 2.55,
+      "totalAmount": 53.55,
       "firstName": "abs",
       "lastName": "mnb",
       "phoneNumber": "9874",
@@ -115,14 +90,14 @@
       "state": "Kerala",
       "pincode": "676311",
       "paymentMethod": "creditCard",
-      "cardNumber": "1234",
+      "cardNumber": "123412345687878",
       "expiryDate": "12/36",
       "cvv": "1234",
       "upiId": ""
     },
     {
       "id": "edef",
-      "orderId": "1728216618657",
+      "orderId": "18657",
       "userId": "2",
       "products": [
         {
@@ -150,6 +125,139 @@
       "cardNumber": "123",
       "expiryDate": "12/369874",
       "cvv": "9874",
+      "upiId": ""
+    },
+    {
+      "id": "c62a",
+      "orderId": "8419",
+      "userId": "2",
+      "products": [
+        {
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "productId": "1",
+          "quantity": 2
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-06",
+      "firstName": "muhammed ",
+      "lastName": "plo",
+      "phoneNumber": "46456",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "creditCard",
+      "cardNumber": "121212",
+      "expiryDate": "42424/54",
+      "cvv": "1313168",
+      "upiId": ""
+    },
+    {
+      "id": "159b",
+      "orderId": "1728226929908",
+      "userId": "ce99",
+      "products": [
+        {
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "productId": "1",
+          "quantity": 1
+        },
+        {
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "productId": "2",
+          "quantity": 1
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-06",
+      "subtotal": 125.49,
+      "tax": 6.2745,
+      "totalAmount": 131.7645,
+      "firstName": "jack",
+      "lastName": "jacky",
+      "phoneNumber": "1239876548",
+      "email": "jack@123",
+      "address": "jakhouse po city",
+      "city": "gotham",
+      "state": "kerala",
+      "pincode": "56789",
+      "paymentMethod": "creditCard",
+      "cardNumber": "12345696325411",
+      "expiryDate": "12/96",
+      "cvv": "12369",
+      "upiId": ""
+    },
+    {
+      "id": "d502",
+      "orderId": "24478",
+      "products": [
+        {
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "productId": "1",
+          "quantity": 1
+        },
+        {
+          "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg",
+          "productId": "3",
+          "quantity": 1
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-07",
+      "subtotal": 114.99,
+      "tax": 5.7495,
+      "totalAmount": 120.73,
+      "firstName": "muhammed ",
+      "lastName": "mnb",
+      "phoneNumber": "123466",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "creditCard",
+      "cardNumber": "1234698594351",
+      "expiryDate": "12/96",
+      "cvv": "1236",
+      "upiId": ""
+    },
+    {
+      "id": "64f3",
+      "orderId": "70098",
+      "userId": "ce99",
+      "products": [
+        {
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "productId": "1",
+          "quantity": 2,
+          "price": 99.99
+        },
+        {
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "productId": "2",
+          "quantity": 1,
+          "price": 25.5
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-07",
+      "subtotal": 225.48,
+      "tax": 11.27,
+      "totalAmount": 236.754,
+      "firstName": "muhammed ",
+      "lastName": "mnb",
+      "phoneNumber": "902578631",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "creditCard",
+      "cardNumber": "158963277125",
+      "expiryDate": "12/6",
+      "cvv": "12345",
       "upiId": ""
     }
   ],

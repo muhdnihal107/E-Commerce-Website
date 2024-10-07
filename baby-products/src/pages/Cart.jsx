@@ -48,7 +48,7 @@ const handleBtn = ()=>{
       <div className='cart-total-bill'>
         <h1>Cart totals</h1>
         <p>Subtotal: ₹{subTotal.toFixed(2)}</p>
-        <p>tax  ₹{tax.toFixed(2)}</p>
+        <p>tax  ₹{tax.toFixed(1)}</p>
         <p> total ₹{total.toFixed(2)}</p>
            <button className='cart-checkout-btn' onClick={handleBtn}>Proceed to Checkout</button>
       </div>

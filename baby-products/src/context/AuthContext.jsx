@@ -3,10 +3,12 @@ import React, { createContext, useEffect, useState } from 'react'
 
 
 export const AuthContext = createContext();
+const BASE_URL = 'http://localhost:4000';
 
 const AuthProvider = ( {children}) => {
 const [user,setUser] = useState(null);
 const [isAuthenticated,setIsAuthenticated] = useState(false);
+const [totalUser,setTotalUser] = useState([]);
 
   useEffect(()=>{
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -14,7 +16,23 @@ const [isAuthenticated,setIsAuthenticated] = useState(false);
         setUser(storedUser);
         setIsAuthenticated(true);
     }
-  },[])
+  },[]);
+
+  const fetchUser = async()=>{
+    try{
+      const responce = await axios.get(`${BASE_URL}/users`);
+      setTotalUser(responce.data);
+      console.log('fetched user', responce.data);
+    }
+    catch (error){
+      console.error("error fetching user");
+      
+    }
+  };
+
+  useEffect(()=>{
+    fetchUser();
+  },[]);
 
 const register = async(newUser)=>{
   try{
@@ -62,7 +80,7 @@ const logout = ()=>{
 console.log(isAuthenticated);
 
   return (
-    <AuthContext.Provider value={{user, isAuthenticated, setUser,setIsAuthenticated,register,login,logout}} >
+    <AuthContext.Provider value={{user, isAuthenticated,totalUser,setTotalUser, setUser,setIsAuthenticated,register,login,logout,fetchUser}} >
         {children}
     </AuthContext.Provider>
   )

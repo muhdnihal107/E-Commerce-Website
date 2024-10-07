@@ -1,12 +1,63 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { OrderContext } from '../context/OrderContext';
+import axios from 'axios';
+import { CartContext } from '../context/CartContext';
 
 const Order = () => {
-const {orders} = useContext(OrderContext);
-if(orders.length === 0){
-  return <p>no order Available. place an order</p>
+const [latestOrder,setLatestOrder] = useState([]);
+const [loading, setLoading] = useState(true); // To handle loading state
+const [error, setError] = useState(null); // To handle error state
+
+// Replace with your backend orders endpoint
+const BASE_URL = 'http://localhost:4000/orders';
+
+useEffect(() => {
+  // Fetch orders from the database
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get(BASE_URL); // Fetch all orders
+      const orders = response.data;
+
+      if (orders.length > 0) {
+        const latestOrder = orders[orders.length - 1]; // Get the last (latest) order
+        setLatestOrder(latestOrder);
+      }
+    } catch (err) {
+      console.error('Error fetching orders:', err);
+      setError('Failed to load orders.');
+    } finally {
+      setLoading(false); // Stop loading after data is fetched
+    }
+  };
+
+  fetchOrders(); // Call the function when the component mounts
+}, []);
+
+if (loading) {
+  return <p>Loading order details...</p>;
 }
-const latestOrder = orders[orders.length -1];
+
+if (error) {
+  return <p>{error}</p>;
+}
+
+if (!latestOrder) {
+  return <p>No orders available. Please place an order.</p>;
+}
+
+/*useEffect(()=>{
+  if(orders.length > 0){
+    setLatestOrder(orders[orders.length -1]);
+  }else{
+    const savedOrder = localStorage.getItem('latestOrder');
+    if(savedOrder){
+      setLatestOrder(JSON.parse(savedOrder));
+    }
+  }
+
+},[orders]);*/
+
+
   return (
       <div className="order-summary">
         <h1>Order Summary</h1>
@@ -29,43 +80,45 @@ const latestOrder = orders[orders.length -1];
           <div className="shipping-info">
             <h2>Shipping Information:</h2>
             <p>
-              <strong>Name:</strong> {latestOrder.shippingInfo.firstName} {latestOrder.shippingInfo.lastName}
+              <strong>Name:</strong> {latestOrder.firstName} {latestOrder.lastName}
             </p>
             <p>
-              <strong>Phone:</strong> {latestOrder.shippingInfo.phoneNumber}
+              <strong>Phone:</strong> {latestOrder.phoneNumber}
             </p>
             <p>
-              <strong>Email:</strong> {latestOrder.shippingInfo.email}
+              <strong>Email:</strong> {latestOrder.email}
             </p>
             <p>
-              <strong>Address:</strong> {latestOrder.shippingInfo.address}, {latestOrder.shippingInfo.city}, {latestOrder.shippingInfo.state} - {latestOrder.shippingInfo.pincode}
+              <strong>Address:</strong> {latestOrder.address}, {latestOrder.city}, {latestOrder.state} - {latestOrder.pincode}
             </p>
           </div>
   
           <div className="payment-info">
             <h2>Payment Information:</h2>
             <p>
-              <strong>Payment Method:</strong> {latestOrder.paymentInfo.paymentMethod}
+              <strong>Payment Method:</strong> {latestOrder.paymentMethod}
             </p>
-            {latestOrder.paymentInfo.paymentMethod === 'creditCard' && (
+            {latestOrder.paymentMethod === 'creditCard' && (
               <p>
-                <strong>Card Number:</strong> **** **** **** {latestOrder.paymentInfo.cardNumber.slice(-4)}
+                <strong>Card Number:</strong> **** **** **** {latestOrder.cardNumber.slice(-4)}
               </p>
             )}
-            {latestOrder.paymentInfo.paymentMethod === 'upi' && (
+            {latestOrder.paymentMethod === 'upi' && (
               <p>
-                <strong>UPI ID:</strong> {latestOrder.paymentInfo.upiId}
+                <strong>UPI ID:</strong> {latestOrder.upiId}
               </p>
             )}
-            {latestOrder.paymentInfo.paymentMethod === 'netBanking' && (
+            {latestOrder.paymentMethod === 'netBanking' && (
               <p>
-                <strong>Bank:</strong> {latestOrder.paymentInfo.bank}
+                <strong>Bank:</strong> 
               </p>
             )}
           </div>
   
           <div className="order-total">
-            <h2>Total Amount: ₹{latestOrder.totalAmount}</h2>
+            <h2>Subtotal: ₹{(latestOrder.subtotal).toFixed(2)}</h2>
+            <h2>Tax: ₹{(latestOrder.tax).toFixed(2)}</h2>
+            <h2>Total Amount: ₹{(latestOrder.totalAmount).toFixed(2)}</h2>
           </div>
         </div>
       </div>
