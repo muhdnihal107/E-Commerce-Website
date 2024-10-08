@@ -67,7 +67,7 @@ const ProductList = () => {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <p>
-              <strong>${product.price.toFixed(2)}</strong>
+              <strong>${product.price}</strong>
             </p>
             <button
               className='add-to-cart-btn'

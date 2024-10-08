@@ -1,8 +1,11 @@
 import React from 'react'
 import baby1img from '../assets/home-baby-img.png'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
+    <>
+    
     <div className='home'>
       <div className='home-head-con'>
         <div className='home-text1'><p>Flat 30% Off + Cashback!</p></div>
@@ -19,6 +22,8 @@ const Home = () => {
         <img src={baby1img} alt="" />
       </div>
     </div>
+    <Footer />
+    </>
   )
 }
 

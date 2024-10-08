@@ -5,32 +5,31 @@ import { CartContext } from '../context/CartContext';
 
 const Order = () => {
 const [latestOrder,setLatestOrder] = useState([]);
-const [loading, setLoading] = useState(true); // To handle loading state
-const [error, setError] = useState(null); // To handle error state
+const [loading, setLoading] = useState(true); 
+const [error, setError] = useState(null); 
 
-// Replace with your backend orders endpoint
 const BASE_URL = 'http://localhost:4000/orders';
 
 useEffect(() => {
-  // Fetch orders from the database
+
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(BASE_URL); // Fetch all orders
+      const response = await axios.get(BASE_URL); 
       const orders = response.data;
 
       if (orders.length > 0) {
-        const latestOrder = orders[orders.length - 1]; // Get the last (latest) order
+        const latestOrder = orders[orders.length - 1]; 
         setLatestOrder(latestOrder);
       }
     } catch (err) {
       console.error('Error fetching orders:', err);
       setError('Failed to load orders.');
     } finally {
-      setLoading(false); // Stop loading after data is fetched
+      setLoading(false);
     }
   };
 
-  fetchOrders(); // Call the function when the component mounts
+  fetchOrders(); 
 }, []);
 
 if (loading) {
@@ -45,17 +44,7 @@ if (!latestOrder) {
   return <p>No orders available. Please place an order.</p>;
 }
 
-/*useEffect(()=>{
-  if(orders.length > 0){
-    setLatestOrder(orders[orders.length -1]);
-  }else{
-    const savedOrder = localStorage.getItem('latestOrder');
-    if(savedOrder){
-      setLatestOrder(JSON.parse(savedOrder));
-    }
-  }
 
-},[orders]);*/
 
 
   return (

@@ -3,6 +3,7 @@ import { AuthContext } from './AuthContext';
 import { CartContext } from './CartContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ProductContext } from './ProductContext';
 
 
 export const OrderContext = createContext();
@@ -16,6 +17,7 @@ const {cart,clearCart,calculateTotal} = useContext(CartContext);
 const [orders,setOrder] = useState([]);
 const navigate = useNavigate();
 const {subTotal,tax,total} = calculateTotal();
+const {updateStock} = useContext(ProductContext);
 const [totalOrders,setTotalOrders] = useState([]);
 
 const fetchOrder = async()=>{
@@ -32,6 +34,7 @@ const fetchOrder = async()=>{
 useEffect(()=>{
   fetchOrder();
 },[])
+
 
 
 const PlaceOrder = async(formData)=>{
@@ -61,22 +64,23 @@ const PlaceOrder = async(formData)=>{
       const responce = await axios.post(`${BASE_URL}/orders`,newOrder);
       const savedOrder = responce.data;
       console.log('Order placed:', savedOrder);
+
+     /* cart.forEach( async(item) => {
+        await updateStock(item.id,item.quantity);
+      });*/
+
       setOrder((prevOrders) => [...prevOrders, savedOrder]);
       clearCart();
       localStorage.setItem('latestOrder', JSON.stringify(savedOrder));
       alert("Order Placed successfully");
+      
       navigate('/order');
       return true;
      }catch (error) {
       console.error("Error placing order:", error);
       return false;
     }
-  
-   
-
 };
-
-
 
 
 

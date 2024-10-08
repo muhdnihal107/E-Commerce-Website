@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Footer from '../components/Footer';
 
 
 const Cart = () => {
@@ -14,6 +15,8 @@ const handleBtn = ()=>{
 };
   
   return (
+    <>
+    
     <div className="cart-sec">
       <h1 className="cart-head">Your Cart</h1>
       {cart.length === 0 ? (
@@ -52,7 +55,10 @@ const handleBtn = ()=>{
         <p> total ₹{total.toFixed(2)}</p>
            <button className='cart-checkout-btn' onClick={handleBtn}>Proceed to Checkout</button>
       </div>
+      
     </div>
+    <Footer/>
+    </>
   );
 };
 

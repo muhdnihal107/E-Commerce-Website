@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import logo from '../assets/logo.png'
 import CartLogo from '../assets/shopping.png'
@@ -67,6 +67,7 @@ const Header = () => {
            </ul>
         </div>
       </nav>
+      <Outlet />
     </div>
   )
 }

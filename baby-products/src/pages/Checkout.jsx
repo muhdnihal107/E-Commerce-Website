@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import { OrderContext } from '../context/OrderContext';
+import Footer from '../components/Footer';
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
@@ -72,12 +73,10 @@ const {PlaceOrder} = useContext(OrderContext);
    
     const success = await PlaceOrder(formData);
 
-    if(success){
-      Navigate('/order');
-    }
   };
   
   return (
+    <>
     <div className="checkout-component">
       <h1 className="checkout-head">Checkout</h1>
       <form onSubmit={handleSubmit} className="checkout-form">
@@ -277,6 +276,8 @@ const {PlaceOrder} = useContext(OrderContext);
         </div>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 };
 

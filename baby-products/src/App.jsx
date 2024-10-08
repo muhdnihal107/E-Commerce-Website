@@ -14,18 +14,18 @@ import Profile from "./pages/Profile"
 import Dashboard from "./admin/pages/Dashboard"
 import ProductManagement from "./admin/pages/ProductManagement"
 import OrderMangement from "./admin/pages/OrderMangement"
-import Settings from "./admin/pages/Settings"
 import AdminLayout from "./admin/AdminLayout"
 import Customers from "./admin/pages/Customers"
 import './admin/admin.css';
 import OrderProvider from "./context/OrderContext"
 import AuthProvider from "./context/AuthContext"
 import Order from "./pages/Order"
+import OrderView from "./admin/pages/OrderView"
+import AddProduct from "./admin/pages/AddProduct"
+import ProductView from "./admin/pages/ProductView"
 
 function App() {
-  const location = useLocation();
-   const noHeaderFooterPaths = ['/register','/login','/admin','/admin/dashboard',
-    '/admin/productmanage','/admin/ordermanage','/admin/customers','/admin/settings',];
+  
 
   return (
     <>
@@ -35,27 +35,32 @@ function App() {
     <ProductProvider>
       <CartProvider>
         <OrderProvider>
-         {!noHeaderFooterPaths.includes(location.pathname) && <Header />}
+        
     <Routes>
-      
-      <Route exact path="/" element={<Home />}/>
-      <Route path="/login" element={<Login />}/>
-      <Route path="/register" element={<Register />}/>
+      <Route path="/" element={<Header />} >
+      <Route  path="/" element={<Home />}/>
       <Route path="/profile" element={<Profile />}/>
       <Route path="/product" element={<ProductList />}/>
       <Route path="/product/:id" element={<ProductDetails />}/>
       <Route path="/cart" element={<Cart />}/>
       <Route path="/checkout" element={<Checkout />}/>
       <Route path="/order" element={<Order/>}/>
+      </Route>
+
+
+      <Route path="/login" element={<Login />}/>
+      <Route path="/register" element={<Register />}/>
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="productmanage" element={<ProductManagement />}/>
+        <Route path="productmanage/:id" element={<ProductView />}/>
         <Route path="ordermanage" element={<OrderMangement />}/>
+        <Route path="ordermanage/:id" element={<OrderView/>} />
         <Route path="customers" element={<Customers />}/>
-        <Route path="settings" element={<Settings />}/>
+        <Route path="addproduct" element={<AddProduct />}/>
       </Route>
     </Routes>
-    {!noHeaderFooterPaths.includes(location.pathname) && <Footer />}
+  
           </OrderProvider>
 
       </CartProvider>
@@ -68,3 +73,6 @@ function App() {
 }
 
 export default App
+
+
+
