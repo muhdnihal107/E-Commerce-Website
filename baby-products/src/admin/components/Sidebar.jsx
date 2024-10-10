@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import babyProductImg from '../assets/baby-products.png';
 const Sidebar = () => {
   return (
     // <nav className="bg-gray-800 text-white w-64 h-screen shadow-md"> {/* Set height to full screen */}
@@ -52,9 +52,9 @@ const Sidebar = () => {
     //     </ul>
     //   </nav>
     // </nav>
-    <nav className="bg-gray-800 text-white w-64 h-screen shadow-md flex flex-col"> {/* Set height to full screen and use flex */}
+    <nav className="bg-gray-800 text-white w-64 h-600px shadow-md flex flex-col"> {/* Set height to full screen and use flex */}
   <div className="flex items-center justify-center h-16 border-b border-gray-700">
-    <img src="" alt="Logo" className="h-8" /> {/* Add your logo here */}
+    <img src={babyProductImg} alt="Logo" className="h-8" /> {/* Add your logo here */}
   </div>
   <nav className="mt-4 flex-grow"> {/* Allow the nav to grow and fill the remaining space */}
     <ul className="space-y-2">

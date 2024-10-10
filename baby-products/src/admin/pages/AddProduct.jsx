@@ -7,10 +7,9 @@ const [newProduct,setNewProduct] = useState({
     name:'',
     description:'',
     price:0,
-    stock:0,
     image:''
 });
-const {addProduct} = useContext(ProductContext);
+const {products,setProducts,addProduct} = useContext(ProductContext);
 const handleChange=(e)=>{
     const name = e.target.name;
     const value = e.target.value;
@@ -20,8 +19,18 @@ const handleChange=(e)=>{
 const handleSubmit = async(e)=>{
    e.preventDefault();
    console.log(newProduct);
-   
-   addProduct(newProduct);
+  
+  const success= await addProduct(newProduct);
+  if(success){
+    setNewProduct((item)=>[...item,newProduct])
+  };
+   setNewProduct({
+    id:'',
+    name:'',
+    description:'',
+    price:0,
+    image:''
+});
 }
 
   return (
@@ -73,18 +82,6 @@ const handleSubmit = async(e)=>{
               id="product-price"
               placeholder="Product Price"
               value={newProduct.price}
-              onChange={handleChange}
-              className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
-            />
-          </div>
-          <div>
-            <label htmlFor="product-stock" className="block text-gray-700 font-medium mb-2">Product Stock</label>
-            <input
-              type="number"
-              name="stock"
-              id="product-stock"
-              placeholder="Product Stock"
-              value={newProduct.stock}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />

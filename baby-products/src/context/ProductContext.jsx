@@ -27,31 +27,7 @@ const ProductProvider = ({ children }) => {
     }
   };
  
-  const updateStock = async(productId,placedQuantity)=>{
-     const updatedProducts = products.map((item)=>{
-      if(item.id == productId){
-        if(item.stock >= placedQuantity){
-          return{...products,stock: item.stock - placedQuantity};
-        }
-        else{
-          console.log('Not enough stock available');
-        }
-      }
-      return item;
-     });
-     setProducts(updatedProducts);
-     const updatedProduct = updatedProducts.find(item =>item.id==productId);
-     if(updatedProduct){
-      try{
-        const responce = await axios.post(`http://localhost:4000/products/${productId}`,updatedProduct);
-        console.log("updated stock data",responce.data);
-        
-     }catch (error){
-      console.error('Error updating product stock:', error);
-     }
-     }
-     
-  };
+ 
 
   const deleteProduct = async(productId)=>{
     try{
@@ -85,7 +61,7 @@ const ProductProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ products: filteredProducts, loading, searchProducts ,updateStock,addProduct,deleteProduct}}>
+    <ProductContext.Provider value={{ products: filteredProducts, loading, searchProducts ,addProduct,deleteProduct,setProducts,fetchProducts}}>
       {children}
     </ProductContext.Provider>
   );

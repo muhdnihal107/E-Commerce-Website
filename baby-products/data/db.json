@@ -5,63 +5,70 @@
       "name": "John Doe",
       "email": "johndoe@example.com",
       "password": "hashed_password",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Baby Stroller",
-          "description": "Comfortable stroller for your baby",
-          "price": 99.99,
-          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
-          "quantity": 1
-        },
-        {
-          "id": "2",
-          "name": "Baby Diapers",
-          "description": "Soft and absorbent diapers",
-          "price": 25.5,
-          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
-          "quantity": 1
-        },
-        {
-          "id": "3",
-          "name": "Baby Bottle",
-          "description": "Eco-friendly baby bottle",
-          "price": 15,
-          "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "4",
-          "name": "Plush Sheep Toy",
-          "description": "A soft and cuddly plush sheep toy with a big smile.",
-          "price": 12.99,
-          "image": "https://cdn.pixabay.com/photo/2016/03/26/22/22/happy-1281590_1280.jpg",
-          "quantity": 1
-        }
-      ]
+      "cart": [],
+      "blocked": true
     },
     {
       "id": "2",
       "name": "Jane Smith",
       "email": "janesmith@example.com",
       "password": "hashed_password",
-      "cart": []
+      "cart": [],
+      "blocked": false
     },
     {
-      "id": "7ce5",
-      "username": "Nihal",
+      "id": "3",
+      "name": "Nihal",
       "email": "muhd@123",
       "password": "Muhd1234",
       "cpassword": "Muhd1234",
-      "cart": []
+      "cart": [],
+      "blocked": false
     },
     {
-      "id": "ce99",
-      "username": "jack",
-      "email": "jack@123",
-      "password": "Jack1234",
-      "cpassword": "Jack1234",
-      "cart": []
+      "id": "5",
+      "name": "Mike",
+      "email": "mike@123",
+      "password": "Miketyson123",
+      "cpassword": "Miketyson123",
+      "cart": [],
+      "blocked": false
+    },
+    {
+      "id": "6",
+      "name": "mark",
+      "email": "mark@123",
+      "password": "Mark1234",
+      "cpassword": "Mark1234",
+      "cart": [
+        {
+          "id": "1",
+          "name": "Baby Stroller",
+          "description": "Comfortable stroller for your baby",
+          "price": 99.99,
+          "stock": 100,
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "quantity": 1
+        }
+      ],
+      "blocked": false
+    },
+    {
+      "id": "3f59",
+      "name": "peter",
+      "email": "peter@123",
+      "password": "Peter1234",
+      "cpassword": "Peter1234",
+      "cart": [],
+      "blocked": false
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "name": "Admin John",
+      "email": "admin@example.com",
+      "password": "admin123"
     }
   ],
   "orders": [
@@ -262,7 +269,7 @@
     },
     {
       "id": "c111",
-      "orderId": "Tue Oct 08 2024 10:47:19 GMT+0530 (India Standard Time)",
+      "orderId": "502354258",
       "userId": "ce99",
       "products": [
         {
@@ -301,6 +308,91 @@
       "cardNumber": "695854",
       "expiryDate": "12/63",
       "cvv": "9874",
+      "upiId": ""
+    },
+    {
+      "id": "e8f0",
+      "orderId": "3f59500",
+      "userId": 1728533855527,
+      "products": [
+        {
+          "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493",
+          "productId": "1",
+          "productName": "Baby Stroller",
+          "quantity": 1,
+          "price": 99.99
+        },
+        {
+          "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg",
+          "productId": "3",
+          "productName": "Baby Bottle",
+          "quantity": 1,
+          "price": 15
+        },
+        {
+          "image": "https://cdn.pixabay.com/photo/2016/03/26/22/22/happy-1281590_1280.jpg",
+          "productId": "4",
+          "productName": "Plush Sheep Toy",
+          "quantity": 1,
+          "price": 12.99
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-10",
+      "subtotal": 127.97999999999999,
+      "tax": 6.399,
+      "totalAmount": 134.379,
+      "firstName": "peter",
+      "lastName": "parker",
+      "phoneNumber": "964875321",
+      "email": "peter@123",
+      "address": "p houser,polksfkj,india",
+      "city": "poiuy",
+      "state": "poiuy",
+      "pincode": "654712",
+      "paymentMethod": "creditCard",
+      "cardNumber": "12543694",
+      "expiryDate": "15/96",
+      "cvv": "12365",
+      "upiId": ""
+    },
+    {
+      "id": "a58b",
+      "orderId": 1728538955934,
+      "userId": "1",
+      "products": [
+        {
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "productId": "2",
+          "productName": "Baby Diapers",
+          "quantity": 3,
+          "price": 25.5
+        },
+        {
+          "image": "https://as2.ftcdn.net/v2/jpg/01/32/81/77/1000_F_132817772_INYL3P0EWh2IsTKPEPooud7JYmPXMpgU.jpg",
+          "productId": "3",
+          "productName": "Baby Bottle",
+          "quantity": 1,
+          "price": 15
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-10",
+      "subtotal": 91.5,
+      "tax": 4.575,
+      "totalAmount": 96.075,
+      "firstName": "jack",
+      "lastName": "plo",
+      "phoneNumber": "5464864",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "creditCard",
+      "cardNumber": "4468984",
+      "expiryDate": "12/66",
+      "cvv": "1234",
       "upiId": ""
     }
   ],
@@ -384,6 +476,14 @@
       "price": 14,
       "stock": 100,
       "image": "https://littlecharlie.in/cdn/shop/products/EddieBabyShoes-White_713x.jpg?v=1645580604"
+    },
+    {
+      "id": "11",
+      "name": "Baby Hat",
+      "description": "Yellow small hats for babies",
+      "price": "50",
+      "stock": "59",
+      "image": "https://m.media-amazon.com/images/I/81NLRfCoGIL._SX679_.jpg"
     }
   ]
 }

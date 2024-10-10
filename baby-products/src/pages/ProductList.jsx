@@ -46,6 +46,7 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import Footer from '../components/Footer';
 
 const ProductList = () => {
   const { products, loading } = useContext(ProductContext);
@@ -56,8 +57,9 @@ const ProductList = () => {
   }
 
   return (
+    <>
     <div className='product-container'>
-      <h1>SHOP</h1>
+      
       {products.length > 0 ? (
         products.map((product) => (
           <div key={product.id} className='product-card'>
@@ -67,7 +69,7 @@ const ProductList = () => {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <p>
-              <strong>${product.price}</strong>
+              <strong>₹{product.price}</strong>
             </p>
             <button
               className='add-to-cart-btn'
@@ -80,6 +82,8 @@ const ProductList = () => {
         <h3>No products available</h3>
       )}
     </div>
+    <Footer/>
+    </>
   );
 };
 

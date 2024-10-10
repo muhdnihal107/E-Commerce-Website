@@ -9,7 +9,7 @@ const Login = () => {
     password: ''
   });
   const [loginerr,setLoginerr] = useState(false);
-  const {login} = useContext(AuthContext);
+  const {login,isAuthenticated} = useContext(AuthContext);
   const navigate = useNavigate();
   
   
@@ -18,19 +18,32 @@ const Login = () => {
     const value = e.target.value;
     setInputs({...inputs,[name]:value})
   }
-  const handleSubmit = (e)=>{
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = login(inputs.email, inputs.password);
-    if(success){
-      alert('you are sucessfully loged in')
-      console.log('you are sucessfully loged in');
-      setLoginerr(false);
-      navigate('/');
+    
+    try {
+      
+      const success = await login(inputs.email, inputs.password);  
+      
+      if (success=== 'admin') {
+        alert('You are successfully logged in');
+        console.log('You are successfully logged in');
+        setLoginerr(false);
+        navigate('/admin/dashboard');  
+      } else if(success === 'user') {
+        alert('You are successfully logged in');
+        navigate('/');
+      }else{
+        setLoginerr(true);
+      }
+    } catch (error) {
+      console.error('Error during login submission:', error);
+      setLoginerr(true);  
     }
-    else{
-      setLoginerr(true);
-    }
-  }
+  };
+  
   return (
     <section className='login-page'>
       <div className='login-sec'>

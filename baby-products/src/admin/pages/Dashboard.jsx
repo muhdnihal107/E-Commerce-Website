@@ -7,6 +7,8 @@ const Dashboard = () => {
   const { totalOrders,fetchOrder } = useContext(OrderContext);
   const { totalUser,fetchUser } = useContext(AuthContext);
   const {products} = useContext(ProductContext);
+
+  const totalRevenue = totalOrders.reduce((acc, order) => acc + order.totalAmount, 0);
   return (
 
 
@@ -31,7 +33,7 @@ const Dashboard = () => {
         </div>
         <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
             <p className="text-gray-500">Total Revenue</p>
-            <h3 className="text-3xl font-bold text-gray-800">₹0</h3>
+            <h3 className="text-3xl font-bold text-gray-800">₹{totalRevenue}</h3>
             <p className="text-gray-500">in the last month</p>
         </div>
     </div>

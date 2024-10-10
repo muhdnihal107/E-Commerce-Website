@@ -23,6 +23,7 @@ import Order from "./pages/Order"
 import OrderView from "./admin/pages/OrderView"
 import AddProduct from "./admin/pages/AddProduct"
 import ProductView from "./admin/pages/ProductView"
+import CustomerView from "./admin/pages/CustomerView"
 
 function App() {
   
@@ -57,6 +58,7 @@ function App() {
         <Route path="ordermanage" element={<OrderMangement />}/>
         <Route path="ordermanage/:id" element={<OrderView/>} />
         <Route path="customers" element={<Customers />}/>
+        <Route path="customers/:id" element={<CustomerView />}/>
         <Route path="addproduct" element={<AddProduct />}/>
       </Route>
     </Routes>

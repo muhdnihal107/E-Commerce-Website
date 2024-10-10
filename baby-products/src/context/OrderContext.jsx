@@ -17,7 +17,6 @@ const {cart,clearCart,calculateTotal} = useContext(CartContext);
 const [orders,setOrder] = useState([]);
 const navigate = useNavigate();
 const {subTotal,tax,total} = calculateTotal();
-const {updateStock} = useContext(ProductContext);
 const [totalOrders,setTotalOrders] = useState([]);
 
 const fetchOrder = async()=>{
@@ -35,8 +34,6 @@ useEffect(()=>{
   fetchOrder();
 },[])
 
-
-
 const PlaceOrder = async(formData)=>{
 
     if(!user || cart.length == 0 ){
@@ -44,11 +41,12 @@ const PlaceOrder = async(formData)=>{
       return false;
      }
      const newOrder = {
-      orderId: new Date().toString(),
+      orderId: Date.now(),
       userId: user.id,
       products: cart.map((items)=>({
           image: items.image,
           productId: items.id,
+          productName: items.name,
           quantity:items.quantity,
           price: items.price
       })),
@@ -65,9 +63,7 @@ const PlaceOrder = async(formData)=>{
       const savedOrder = responce.data;
       console.log('Order placed:', savedOrder);
 
-     /* cart.forEach( async(item) => {
-        await updateStock(item.id,item.quantity);
-      });*/
+    
 
       setOrder((prevOrders) => [...prevOrders, savedOrder]);
       clearCart();
@@ -81,9 +77,6 @@ const PlaceOrder = async(formData)=>{
       return false;
     }
 };
-
-
-
 
   return (
     <OrderContext.Provider value={{orders,totalOrders,setTotalOrders,PlaceOrder,fetchOrder}}>

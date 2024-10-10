@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import Footer from '../components/Footer';
 
 const ProductDetails = () => {
   const {products,isLoading} = useContext(ProductContext);
@@ -17,8 +18,8 @@ const ProductDetails = () => {
     return <div>Product not found.</div>
   }
   return (
+    <>
     <div className='product-details'>
-      <h1>{product.name}</h1>
       <div className='prod-detail-main'>
         <img src={product.image} alt={product.name} />
         <div className='prod-description'>
@@ -29,11 +30,13 @@ const ProductDetails = () => {
               Pleforw xmbyutc vclrpso erqynol mbpwozk. Wyzoetr kplefno ixrmbut 
             vlopnis qrtzyon. Ftnzywo pxedurc kmliotp qensyo vrgtiwl. Zrikfon vlxemyu ktprinew fowlbem gryxt. Dfbliyo 
             prxenmt olpujic wezoytr kmfcyob.</p>
-            <p className='prod-price'><strong>${product.price.toFixed(2)}</strong></p>
+            <p className='prod-price'><strong>₹{product.price}</strong></p>
             <button onClick={()=>addToCart(product)} className='prod-detail-add-to-cart-btn'>Add to cart</button>
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }
 

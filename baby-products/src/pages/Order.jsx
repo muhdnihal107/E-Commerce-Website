@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { OrderContext } from '../context/OrderContext';
 import axios from 'axios';
 import { CartContext } from '../context/CartContext';
+import Footer from '../components/Footer';
 
 const Order = () => {
 const [latestOrder,setLatestOrder] = useState([]);
@@ -43,11 +44,8 @@ if (error) {
 if (!latestOrder) {
   return <p>No orders available. Please place an order.</p>;
 }
-
-
-
-
   return (
+    <>
       <div className="order-summary">
         <h1>Order Summary</h1>
         <div className="order-summary-details">
@@ -60,7 +58,7 @@ if (!latestOrder) {
             <ul>
               {latestOrder.products.map((product, index) => (
                 <li key={index}>
-                  Product ID: {product.productId} | Quantity: {product.quantity}
+                  Product Name: {product.productName} | Quantity: {product.quantity}
                 </li>
               ))}
             </ul>
@@ -111,6 +109,8 @@ if (!latestOrder) {
           </div>
         </div>
       </div>
+     <Footer/>
+      </>
     );
   
 };

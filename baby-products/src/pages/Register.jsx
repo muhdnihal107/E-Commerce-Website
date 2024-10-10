@@ -4,10 +4,12 @@ import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
   const [inputs,setInputs] =useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
-    cpassword: ''
+    cpassword: '',
+    cart:[],
+    blocked:false
   });
   const [focus,setFocus] = useState({
     errname: false,
@@ -47,9 +49,9 @@ const Register = () => {
              id='name'
              pattern="^[A-Za-z0-9].{2,16}"
              autoComplete='off'
-             name='username'
+             name='name'
              placeholder='Username'
-             value={inputs.username}
+             value={inputs.name}
              onChange={handleChange}
              onBlur={()=>setFocus({...focus,errname: true})}
              focus={focus.errname.toString()} 
