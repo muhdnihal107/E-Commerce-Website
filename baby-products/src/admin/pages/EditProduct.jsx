@@ -1,42 +1,52 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { ProductContext } from '../../context/ProductContext';
 
-const AddProduct = () => {
-const [newProduct,setNewProduct] = useState({
-    id:'',
-    name:'',
-    description:'',
-    price:0,
-    image:''
-});
-const {products,setProducts,addProduct} = useContext(ProductContext);
-const handleChange=(e)=>{
-    const name = e.target.name;
-    const value = e.target.value;
-    setNewProduct({...newProduct,[name]: value});
-};
+const EditProduct = () => {
+    const {products,editProduct} = useContext(ProductContext);
+    const [editedProduct,setEditedProduct] = useState({
+            id: '',
+            name: '',
+            description: '',
+            price: 0,
+            image: ''
+            });
+    
+    const {id} =useParams();
+    useEffect(()=>{
+        const findProduct = products.find((item)=>item.id == id);
+        if(findProduct){
+            setEditedProduct(findProduct);
+        }else{
+            console.log('Product not found');
+            
+        }
+    },[id,products]);
 
-const handleSubmit = async(e)=>{
-   e.preventDefault();
-   console.log(newProduct);
-  
-  const success= await addProduct(newProduct);
-  if(success){
-    setNewProduct((item)=>[...item,newProduct]);
-  };
-   setNewProduct({
-    id:'',
-    name:'',
-    description:'',
-    price:0,
-    image:''
-});
-}
+    const handleChange = (e)=>{
+        const name = e.target.name;
+        const value = e.target.value;
+        setEditedProduct({...editedProduct,[name]:value});
+    };
 
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        const success = await editProduct(editedProduct.id,editedProduct);
+        if(success){
+            setEditedProduct({
+                id: '',
+                name: '',
+                description: '',
+                price: 0,
+                image: ''
+            });
+        };
+
+    };
+    
   return (
-
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Add Product</h1>
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">Edit Product</h1>
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -45,8 +55,8 @@ const handleSubmit = async(e)=>{
               type="number"
               name="id"
               id="product-id"
-              placeholder="Product ID"
-              value={newProduct.id}
+              placeholder={editedProduct.id}
+              value={editedProduct.id}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />
@@ -57,8 +67,8 @@ const handleSubmit = async(e)=>{
               type="text"
               name="name"
               id="product-name"
-              placeholder="Product Name"
-              value={newProduct.name}
+              placeholder={editedProduct.name}
+              value={editedProduct.name}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />
@@ -68,8 +78,8 @@ const handleSubmit = async(e)=>{
             <textarea
               name="description"
               id="product-description"
-              placeholder="Product Description"
-              value={newProduct.description}
+              placeholder={editedProduct.description}
+              value={editedProduct.description}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             ></textarea>
@@ -80,8 +90,8 @@ const handleSubmit = async(e)=>{
               type="number"
               name="price"
               id="product-price"
-              placeholder="Product Price"
-              value={newProduct.price}
+              placeholder={editedProduct.price}
+              value={editedProduct.price}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />
@@ -92,8 +102,8 @@ const handleSubmit = async(e)=>{
               type="text"
               name="image"
               id="product-image"
-              placeholder="Product Image URL"
-              value={newProduct.image}
+              placeholder={editedProduct.image}
+              value={editedProduct.image}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />
@@ -103,13 +113,14 @@ const handleSubmit = async(e)=>{
               type="submit"
               className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150"
             >
-              Add Product
+              Edit Product
             </button>
           </div>
         </form>
       </div>
-    </div>
-  );
+   </div>
+   
+  )
 }
 
-export default AddProduct
+export default EditProduct

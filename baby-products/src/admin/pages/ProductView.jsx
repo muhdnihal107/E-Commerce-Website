@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../../context/ProductContext'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProductView = () => {
     const {products,deleteProduct} = useContext(ProductContext);
@@ -32,7 +32,11 @@ const ProductView = () => {
             <button onClick={()=>deleteProduct(product.id)}
                 className="bg-red-600 text-white font-semibold py-2 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out"
                 >Delete Product</button>
-
+                <Link to={`/admin/productmanage/edit/${product.id}`}>
+                <button className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-900 transition duration-300 ease-in-out"
+  
+                >Edit Product</button>
+                </Link>
         </div> 
         </div>
         

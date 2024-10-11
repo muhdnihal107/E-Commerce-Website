@@ -26,7 +26,20 @@ const ProductProvider = ({ children }) => {
       setLoading(false);
     }
   };
- 
+  const editProduct = async(productId,updatedProduct)=>{
+    try{
+      const responce = await axios.patch(`http://localhost:4000/products/${productId}`,updatedProduct);
+      const editedProduct = responce.data;
+      setProducts(item=>item.map((p)=>p.id==productId?editedProduct:p));
+      return true;
+
+    }catch(error){
+      console.error('error while editing Product');
+      return false;
+      
+    }
+
+  };
  
 
   const deleteProduct = async(productId)=>{
@@ -61,7 +74,7 @@ const ProductProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ products: filteredProducts, loading, searchProducts ,addProduct,deleteProduct,setProducts,fetchProducts}}>
+    <ProductContext.Provider value={{ products: filteredProducts, loading, searchProducts ,addProduct,deleteProduct,setProducts,fetchProducts,editProduct}}>
       {children}
     </ProductContext.Provider>
   );
