@@ -40,13 +40,13 @@ function App() {
         
     <Routes>
       <Route path="/" element={<Header />} >
-      <Route  path="/" element={<Home />}/>
-      <Route path="/profile" element={<Profile />}/>
-      <Route path="/product" element={<ProductList />}/>
-      <Route path="/product/:id" element={<ProductDetails />}/>
-      <Route path="/cart" element={<Cart />}/>
-      <Route path="/checkout" element={<Checkout />}/>
-      <Route path="/order" element={<Order/>}/>
+       <Route  path="/" element={<Home />}/>
+       <Route path="/profile" element={<Profile />}/>
+       <Route path="/product" element={<ProductList />}/>
+       <Route path="/product/:id" element={<ProductDetails />}/>
+       <Route path="/cart" element={<Cart />}/>
+       <Route path="/checkout" element={<Checkout />}/>
+       <Route path="/order" element={<Order/>}/>
       </Route>
 
 

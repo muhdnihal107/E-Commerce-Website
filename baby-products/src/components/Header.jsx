@@ -32,7 +32,7 @@ const Header = () => {
     <div>
       <nav className='navbar'>
         <div className='logo'>
-          <img src={logo} alt="Baby Hub logo" />
+          <img src={"https://www.freepik.com/free-vector/detailed-baby-logo-template_11583053.htm#fromView=keyword&page=1&position=33&uuid=772bb3a4-58dd-4e34-ac51-64d375884187&new_detail=true"} alt="Baby Hub logo" />
         </div>
         <div className='list-con'>
            <ul>

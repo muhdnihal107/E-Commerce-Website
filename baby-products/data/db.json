@@ -5,8 +5,17 @@
       "name": "John Doe",
       "email": "johndoe@example.com",
       "password": "hashed_password",
-      "cart": [],
-      "blocked": true
+      "cart": [
+        {
+          "id": "2",
+          "name": "Baby Diapers",
+          "description": "Soft and absorbent diapers",
+          "price": 25.5,
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "quantity": 1
+        }
+      ],
+      "blocked": false
     },
     {
       "id": "2",
@@ -51,7 +60,7 @@
           "quantity": 1
         }
       ],
-      "blocked": false
+      "blocked": true
     },
     {
       "id": "3f59",
@@ -59,6 +68,15 @@
       "email": "peter@123",
       "password": "Peter1234",
       "cpassword": "Peter1234",
+      "cart": [],
+      "blocked": false
+    },
+    {
+      "id": "43ec",
+      "name": "Muhammed Nihal",
+      "email": "muhdnihal011@gmail.com",
+      "password": "Muhammednihal107",
+      "cpassword": "Muhammednihal107",
       "cart": [],
       "blocked": false
     }
@@ -394,22 +412,47 @@
       "expiryDate": "12/66",
       "cvv": "1234",
       "upiId": ""
+    },
+    {
+      "id": "0d3d",
+      "orderId": 1729936535521,
+      "userId": "5",
+      "products": [
+        {
+          "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU=",
+          "productId": "2",
+          "productName": "Baby Diapers",
+          "quantity": 1,
+          "price": 25.5
+        }
+      ],
+      "status": "Pending",
+      "orderDate": "2024-10-26",
+      "subtotal": 25.5,
+      "tax": 1.2750000000000001,
+      "totalAmount": 26.775,
+      "firstName": "muhammed ",
+      "lastName": "mnb",
+      "phoneNumber": "4567890",
+      "email": "muhdnihal132@gmail.com",
+      "address": "MOONNIYOOR, ALINCHUVADE, Moonniyur, Kerala 676311, India\n15 612.A",
+      "city": "Mooniyur",
+      "state": "Kerala",
+      "pincode": "676311",
+      "paymentMethod": "upi",
+      "cardNumber": "",
+      "expiryDate": "",
+      "cvv": "",
+      "upiId": "hynujmiol"
     }
   ],
   "products": [
     {
       "id": "1",
-      "name": "Baby Stroller hkihh",
-      "description": "Comfortable stroller for your baby kjkjhkh",
-      "price": "14999",
+      "name": "Baby Stroller ",
+      "description": "Comfortable stroller for your baby ",
+      "price": "149",
       "image": "https://duckduckbaby.in/cdn/shop/files/DDB2355_R1.jpg?v=1726826842&width=493"
-    },
-    {
-      "id": "2",
-      "name": "Baby Diapers",
-      "description": "Soft and absorbent diapers",
-      "price": 25.5,
-      "image": "https://media.istockphoto.com/id/1250328885/photo/a-baby-in-a-diaper-at-the-age-of-two-months-and-a-stack-of-diapers-how-to-choose-baby-diapers.jpg?s=1024x1024&w=is&k=20&c=Dw1NJnE4ItZqAMtrv2kc-ArbKmVUMUVAO2ct3IUjtnU="
     },
     {
       "id": "3",

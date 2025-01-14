@@ -30,7 +30,6 @@ const CustomerView = () => {
         <p className="text-lg font-semibold">User ID: <span className="text-gray-700">{userView.id}</span></p>
         <p className="text-lg font-semibold">Name: <span className="text-gray-700">{userView.name}</span></p>
         <p className="text-lg font-semibold">E-Mail: <span className="text-gray-700">{userView.email}</span></p>
-        <p className="text-lg font-semibold">Password: <span className="text-gray-700">{userView.password}</span></p>
       
             <p className="text-lg font-semibold">Block Status: <span className="text-gray-700">{userView.blocked == true?'User is Blocked':'not Blocked'}</span></p>
       
