@@ -1,15 +1,38 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext'; 
+import React, { useContext, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../redux/slices/authSlice';
 
 const Profile = () => {
-  const { user, logout } = useContext(AuthContext); 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { user, refreshToken, accessToken, isAuthenticated, loading, error } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+
   const handleLogout = () => {
-    logout(); 
-    navigate('/'); 
+    try{
+      dispatch(logoutUser(refreshToken));
+
+    }catch{
+      console.log('error in dispatch in profile page ')
+    }
+    navigate('/');
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className="profile-container">
@@ -18,7 +41,7 @@ const Profile = () => {
         <div className="profile-info">
           <p><strong>Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
-          
+
           <button onClick={handleLogout} className="logout-button">
             Logout
           </button>

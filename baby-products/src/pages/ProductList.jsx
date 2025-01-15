@@ -1,90 +1,96 @@
-// import React, { useContext } from 'react'
-// import { ProductContext } from '../context/ProductContext'
-// import { Link } from 'react-router-dom';
-// import { CartContext } from '../context/CartContext';
-
+// import React, { useContext } from 'react';
+// import { ProductContext } from '../context/ProductContext';
 
 
 // const ProductList = () => {
-//   const { products,loading } =useContext(ProductContext);
+//   const { products, loading } = useContext(ProductContext);
 //   const { addToCart } = useContext(CartContext);
-   
 
-
-//   if(loading){
-//     return <> <h3>Products are loading </h3></>
+//   if (loading) {
+//     return <h3>Products are loading...</h3>;
 //   }
+
 //   return (
-    
+//     <>
 //     <div className='product-container'>
-//       <h1>SHOP</h1>
-//       {products.length > 0 ? (products.map(product=>{
-        
-//         return(
-//          <div key={product.id} className='product-card'>
-//           <Link to={`/product/${product.id}`}> <img src={product.image} alt={product.name} /> </Link>  
+
+//       {products.length > 0 ? (
+//         products.map((product) => (
+//           <div key={product.id} className='product-card'>
+//             <Link to={`/product/${product.id}`}>
+//               <img src={product.image} alt={product.name} />
+//             </Link>
 //             <h2>{product.name}</h2>
-//               <p>{product.description}</p>
-//               <p><strong>${product.price.toFixed(2)}</strong></p>
-//               <button className='add-to-cart-btn' onClick={()=>addToCart(product)}>Add to cart</button>
-//          </div>
-                                                                           
-//   ); 
-//   })): ( <><h3>no producta available</h3></>) }
-      
+//             <p>{product.description}</p>
+//             <p>
+//               <strong>₹{product.price}</strong>
+//             </p>
+//             <button
+//               className='add-to-cart-btn'
+//               onClick={() => addToCart(product)} >
+//               Add to cart
+//             </button>
+//           </div>
+//         ))
+//       ) : (
+//         <h3>No products available</h3>
+//       )}
 //     </div>
+//     <Footer/>
+//     </>
 //   );
-  
-// }
+// };
 
-// export default ProductList
-// //this is my product list
+// export default ProductList;
 
-
-
-import React, { useContext } from 'react';
-import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
 import Footer from '../components/Footer';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { fetchProducts } from "../redux/slices/productSlice";
 
 const ProductList = () => {
-  const { products, loading } = useContext(ProductContext);
-  const { addToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
 
-  if (loading) {
-    return <h3>Products are loading...</h3>;
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (products.loading) {
+    return (<h3>Products are loading...</h3>);
   }
 
   return (
     <>
-    <div className='product-container'>
-      
-      {products.length > 0 ? (
-        products.map((product) => (
-          <div key={product.id} className='product-card'>
-            <Link to={`/product/${product.id}`}>
-              <img src={product.image} alt={product.name} />
-            </Link>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <p>
-              <strong>₹{product.price}</strong>
-            </p>
-            <button
-              className='add-to-cart-btn'
-              onClick={() => addToCart(product)} >
-              Add to cart
-            </button>
-          </div>
-        ))
-      ) : (
-        <h3>No products available</h3>
-      )}
-    </div>
-    <Footer/>
+      <div className='product-container'>
+
+        {products.data.length > 0 ? (
+          products.data.map((product) => (
+            <div key={product.id} className='product-card'>
+              <Link to={`/product/${product.id}`}>
+                <img src={product.image} alt={product.name} />
+              </Link>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+              <p>
+                <strong>₹{product.price}</strong>
+              </p>
+              <button
+                className='add-to-cart-btn'
+                onClick={() => addToCart(product)} >
+                Add to cart
+              </button>
+            </div>
+          ))
+        ) : (
+          <h3>No products available</h3>
+        )}
+      </div>
+      <Footer />
     </>
   );
-};
+
+}
 
 export default ProductList;

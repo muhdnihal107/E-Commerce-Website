@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
+//import { AuthContext } from '../context/AuthContext'
 import logo from '../assets/logo.png'
 import CartLogo from '../assets/shopping.png'
 import userlogo from '../assets/user.png'
 import { ProductContext } from '../context/ProductContext'
+import { useSelector } from 'react-redux'
 const Header = () => {
-  const {isAuthenticated, user} = useContext(AuthContext);
+  // const {isAuthenticated, user} = useContext(AuthContext);
   const {searchProducts} = useContext(ProductContext);
   const [searchProduct,setSearchProduct] = useState('');
   const navigate = useNavigate();
-
+  const {isAuthenticated} = useSelector((state)=>state.auth)
   const handleSearch = (e)=>{
     const search = e.target.value;
       setSearchProduct(search);
@@ -20,11 +21,9 @@ const Header = () => {
   };
 
   const handleUserClick =()=>{
-    if(!isAuthenticated){
-      navigate('/register');
-    }else{
+  
       navigate('/profile');
-    }
+    
     
   }
   
@@ -56,7 +55,7 @@ const Header = () => {
             <li><Link to='/cart'><img className='cart-logo' src={CartLogo} alt="" /></Link></li>
             <li> <div className='user-profile' onClick={handleUserClick}>
                 {isAuthenticated ? (
-                  <span><img className='user-logo' src={userlogo} alt="User" /> {user.name}</span> 
+                  <span><img className='user-logo' src={userlogo} alt="User" /> name</span> 
                 ) : (
                   <img className='user-logo' src={userlogo} alt="User" />
                 )}

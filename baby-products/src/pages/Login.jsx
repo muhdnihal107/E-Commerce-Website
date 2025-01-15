@@ -1,15 +1,20 @@
 import React,{useContext, useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { loginJWT } from '../redux/slices/authSlice';
+//import { AuthContext } from '../context/AuthContext';
 
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const {loading,error,isAuthenticated} = useSelector((state)=>state.auth);
+
   const [inputs,setInputs] = useState({
     email: '',
     password: ''
   });
   const [loginerr,setLoginerr] = useState(false);
-  const {login,isAuthenticated} = useContext(AuthContext);
+  //const {login,isAuthenticated} = useContext(AuthContext);
   const navigate = useNavigate();
   
   
@@ -22,28 +27,32 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
+    dispatch(loginJWT(inputs));
+
+    // try {
       
-      const success = await login(inputs.email, inputs.password);  
+    //   const success = await login(inputs.email, inputs.password);  
       
-      if (success=== 'admin') {
-        alert('You are successfully logged in');
-        console.log('You are successfully logged in');
-        setLoginerr(false);
-        navigate('/admin/dashboard');  
-      } else if(success === 'user') {
-        alert('You are successfully logged in');
-        navigate('/');
-      }else{
-        setLoginerr(true);
-      }
-    } catch (error) {
-      console.error('Error during login submission:', error);
-      setLoginerr(true);  
-    }
+    //   if (success=== 'admin') {
+    //     alert('You are successfully logged in');
+    //     console.log('You are successfully logged in');
+    //     setLoginerr(false);
+    //     navigate('/admin/dashboard');  
+    //   } else if(success === 'user') {
+    //     alert('You are successfully logged in');
+    //     navigate('/');
+    //   }else{
+    //     setLoginerr(true);
+    //   }
+    // } catch (error) {
+    //   console.error('Error during login submission:', error);
+    //   setLoginerr(true);  
+    // }
   };
-  
+  if (isAuthenticated){
+    navigate('/');
+  } 
+
   return (
     <section className='login-page'>
       <div className='login-sec'>
@@ -73,9 +82,9 @@ const Login = () => {
                    onChange={handleChange} />
           </div>
           <div>
-            <button className='sign-btn' type='submit'>Sign In</button>
+            <button className='sign-btn' type='submit' disabled={loading}>Sign In</button>
           </div>
-          <span id='login-err' className={loginerr ? 'show' : ''}>Your username or password is invalid</span>
+          <span id='login-err' className={loginerr ? 'show' : ''}>Your username or password is invalid{error && <p>{error}</p>}</span>
 
         </form>
         
