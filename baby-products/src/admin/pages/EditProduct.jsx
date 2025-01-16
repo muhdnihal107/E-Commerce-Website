@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ProductContext } from '../../context/ProductContext';
 
 const EditProduct = () => {
-    const {products,editProduct} = useContext(ProductContext);
     const [editedProduct,setEditedProduct] = useState({
             id: '',
             name: '',

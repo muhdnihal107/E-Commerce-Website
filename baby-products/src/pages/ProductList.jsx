@@ -52,7 +52,7 @@ import { fetchProducts } from "../redux/slices/productSlice";
 const ProductList = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
-
+  const {addToCart} = useSelector((state)=>state.cart)
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);

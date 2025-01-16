@@ -8,8 +8,6 @@ import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import ProductProvider from "./context/ProductContext"
-import CartProvider from "./context/CartContext"
 import Profile from "./pages/Profile"
 import Dashboard from "./admin/pages/Dashboard"
 import ProductManagement from "./admin/pages/ProductManagement"
@@ -17,8 +15,6 @@ import OrderMangement from "./admin/pages/OrderMangement"
 import AdminLayout from "./admin/AdminLayout"
 import Customers from "./admin/pages/Customers"
 import './admin/admin.css';
-import OrderProvider from "./context/OrderContext"
-import AuthProvider from "./context/AuthContext"
 import Order from "./pages/Order"
 import OrderView from "./admin/pages/OrderView"
 import AddProduct from "./admin/pages/AddProduct"
@@ -31,12 +27,8 @@ function App() {
 
   return (
     <>
-    <AuthProvider>
     
 
-    <ProductProvider>
-      <CartProvider>
-        <OrderProvider>
         
     <Routes>
       <Route path="/" element={<Header />} >
@@ -65,13 +57,9 @@ function App() {
       </Route>
     </Routes>
   
-          </OrderProvider>
 
-      </CartProvider>
    
-    </ProductProvider>
     
-    </AuthProvider>
     </>
   )
 }

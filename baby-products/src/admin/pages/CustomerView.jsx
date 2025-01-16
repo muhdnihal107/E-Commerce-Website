@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ProfileLogo from '../assets/account.png';
 import { useParams } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
 
 const CustomerView = () => {
     const {id} = useParams();
-    const {user,totalUser,deleteUser,blockedUser} = useContext(AuthContext);
     const [userView,setUserView] = useState(null);
 
     useEffect(()=>{

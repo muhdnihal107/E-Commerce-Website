@@ -1,118 +1,131 @@
-import React,{useContext, useState} from 'react'
-import { Link, useNavigate} from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext';
+import React, { useContext, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom'
+import { registerUser } from '../redux/slices/authSlice'
 
 const Register = () => {
-  const [inputs,setInputs] =useState({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+  const [inputs, setInputs] = useState({
     name: '',
     email: '',
     password: '',
     cpassword: '',
-    cart:[],
-    blocked:false
+    cart: [],
+    blocked: false
   });
-  const [focus,setFocus] = useState({
+
+
+  const [focus, setFocus] = useState({
     errname: false,
     erremail: false,
     errpassword: false,
     errcpassword: false
 
   });
-  const {register} =useContext(AuthContext);
-  const navigate = useNavigate();
-  
-  const handleSubmit =(e)=>{
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    register(inputs);
-    navigate('/login');
-    
+
+    const { name, email, password } = inputs;
+
+    try {
+      await dispatch(registerUser({name,email,password})).unwrap();
+      navigate('/login');
+
+    }catch(error){
+      console.error('Registration failed:', error);
+
+    }
+
   };
-  
-  const handleChange =(e)=>{
+
+  const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     console.log(inputs);
-    
-     setInputs({...inputs,[name]: value});
+
+    setInputs({ ...inputs, [name]: value });
   };
   return (
     <section className='reg-section'>
-      
+
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
         <div className='reg-form-group'>
           <label htmlFor="name">Username:</label>
-        <input   
-             type="text"
-             className='form-control'
-             id='name'
-             pattern="^[A-Za-z0-9].{2,16}"
-             autoComplete='off'
-             name='name'
-             placeholder='Username'
-             value={inputs.name}
-             onChange={handleChange}
-             onBlur={()=>setFocus({...focus,errname: true})}
-             focus={focus.errname.toString()} 
-             required  />
-             <span>Username should have 3-16 Characters</span>
+          <input
+            type="text"
+            className='form-control'
+            id='name'
+            pattern="^[A-Za-z0-9].{2,16}"
+            autoComplete='off'
+            name='name'
+            placeholder='Username'
+            value={inputs.name}
+            onChange={handleChange}
+            onBlur={() => setFocus({ ...focus, errname: true })}
+            focus={focus.errname.toString()}
+            required />
+          <span>Username should have 3-16 Characters</span>
         </div>
         <div className='reg-form-group'>
           <label htmlFor="e-mail">Email:</label>
-        <input 
-                type="email"
-                className='form-control'
-                name='email'
-                id='e-mail'
-                placeholder='Email'
-                value={inputs.email}
-                onChange={handleChange}
-                onBlur={()=>setFocus({...focus,erremail: true})}
-                focus={focus.erremail.toString()}  
-                required/>
-                <span>Enter a valid Email ID</span>
+          <input
+            type="email"
+            className='form-control'
+            name='email'
+            id='e-mail'
+            placeholder='Email'
+            value={inputs.email}
+            onChange={handleChange}
+            onBlur={() => setFocus({ ...focus, erremail: true })}
+            focus={focus.erremail.toString()}
+            required />
+          <span>Enter a valid Email ID</span>
         </div>
         <div className='reg-form-group'>
           <label htmlFor="pass">Password:</label>
-        <input 
-                type="password"
-                className='form-control'
-                name='password'
-                id='pass'
-                pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
-                placeholder='Password'
-                value={inputs.password}
-                onChange={handleChange}
-                onBlur={()=>setFocus({...focus,errpassword: true})}
-                focus={focus.errpassword.toString()} 
-                required />
-                <span>Password must have minimum 8 Characters and include atleast 1 uppercase,1 digit and 1 special character</span>
+          <input
+            type="password"
+            className='form-control'
+            name='password'
+            id='pass'
+            pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
+            placeholder='Password'
+            value={inputs.password}
+            onChange={handleChange}
+            onBlur={() => setFocus({ ...focus, errpassword: true })}
+            focus={focus.errpassword.toString()}
+            required />
+          <span>Password must have minimum 8 Characters and include atleast 1 uppercase,1 digit and 1 special character</span>
         </div>
         <div className='reg-form-group'>
           <label htmlFor="cpass">Confirm Password</label>
-        <input 
-                type="password"
-                className='form-control'
-                id='cpass'
-                name='cpassword'
-                pattern={inputs.password}
-                placeholder='Confirm Password'
-                value={inputs.cpassword}
-                onChange={handleChange}
-                onBlur={()=>setFocus({...focus,errcpassword: true})}
-                focus={focus.errcpassword.toString()} 
-                required />
-                <span>Password is not matching</span>
+          <input
+            type="password"
+            className='form-control'
+            id='cpass'
+            name='cpassword'
+            pattern={inputs.password}
+            placeholder='Confirm Password'
+            value={inputs.cpassword}
+            onChange={handleChange}
+            onBlur={() => setFocus({ ...focus, errcpassword: true })}
+            focus={focus.errcpassword.toString()}
+            required />
+          <span>Password is not matching</span>
         </div>
         <div className='reg-btn-con'>
-           <button type='submit'>Sign Up</button>
-           <p className='navigate-txt'>Already have an account?<Link to={'/login'}>Log In</Link></p>
+          <button type='submit'>Sign Up</button>
+          <p className='navigate-txt'>Already have an account?<Link to={'/login'}>Log In</Link></p>
         </div>
-        
+
       </form>
     </section>
   )
 }
 
-export default Register
+export default Register;

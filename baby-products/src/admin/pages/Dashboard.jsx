@@ -1,12 +1,6 @@
 import React, { useContext } from 'react'
-import { OrderContext } from '../../context/OrderContext'
-import { AuthContext } from '../../context/AuthContext';
-import { ProductContext } from '../../context/ProductContext';
 
 const Dashboard = () => {
-  const { totalOrders,fetchOrder } = useContext(OrderContext);
-  const { totalUser,fetchUser } = useContext(AuthContext);
-  const {products} = useContext(ProductContext);
 
   const totalRevenue = totalOrders.reduce((acc, order) => acc + order.totalAmount, 0);
   return (

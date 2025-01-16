@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { OrderContext } from '../../context/OrderContext';
 
 const OrderView = () => {
-    const {totalOrders,fetchOrder} = useContext(OrderContext);
     const {id} = useParams();
 
     const order = totalOrders.find(item => item.orderId == parseInt(id));

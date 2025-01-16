@@ -5,6 +5,17 @@ const API_BASE_URL = 'http://127.0.0.1:8000';
 
 const savedAuthData = JSON.parse(localStorage.getItem('authData'));
 
+export const registerUser = createAsyncThunk('auth/register',async (credentials,{rejectWithValue}) => {
+  try{
+    const response = await axios.post(`${API_BASE_URL}/api/users/register`,credentials);
+    return response.data;
+
+  }catch (error){
+    return rejectWithValue(error.response.data);
+
+  }
+});
+
 
 export const loginJWT = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
   try {
@@ -85,6 +96,18 @@ const authSlice = createSlice({
       localStorage.removeItem('authData');
     })
     builder.addCase(logoutUser.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(registerUser.pending,(state)=>{
+      state.loading = true;
+    });
+    builder.addCase(registerUser.fulfilled,(state)=>{
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });

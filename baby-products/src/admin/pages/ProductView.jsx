@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ProductContext } from '../../context/ProductContext'
 import { Link, useParams } from 'react-router-dom';
 
 const ProductView = () => {
-    const {products,deleteProduct} = useContext(ProductContext);
     const [product,setProduct] = useState(null);
     const {id} = useParams();
 

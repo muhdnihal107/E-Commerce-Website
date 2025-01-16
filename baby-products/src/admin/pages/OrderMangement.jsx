@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { OrderContext } from '../../context/OrderContext'
 import { Link } from 'react-router-dom';
 
 const OrderMangement = () => {
-  const {totalOrders,fetchOrder} = useContext(OrderContext);
 
   useEffect(()=>{
     fetchOrder();

@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { ProductContext } from '../../context/ProductContext';
 import { Link } from 'react-router-dom';
 
 const ProductManagement = () => {
-  const { products ,fetchProducts} = useContext(ProductContext);
 useEffect(()=>{
   fetchProducts();
 },[])

@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../context/AuthContext'
 import { Link } from 'react-router-dom';
 
 const Customers = () => {
-  const {totalUser} = useContext(AuthContext);
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
   <h1 className="text-3xl font-bold mb-6 text-center">User Management</h1>

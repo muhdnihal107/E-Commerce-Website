@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { OrderContext } from '../context/OrderContext';
 import axios from 'axios';
-import { CartContext } from '../context/CartContext';
 import Footer from '../components/Footer';
 
 const Order = () => {

@@ -4,11 +4,9 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import CartLogo from '../assets/shopping.png'
 import userlogo from '../assets/user.png'
-import { ProductContext } from '../context/ProductContext'
 import { useSelector } from 'react-redux'
 const Header = () => {
   // const {isAuthenticated, user} = useContext(AuthContext);
-  const {searchProducts} = useContext(ProductContext);
   const [searchProduct,setSearchProduct] = useState('');
   const navigate = useNavigate();
   const {isAuthenticated} = useSelector((state)=>state.auth)

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { CartContext } from '../context/CartContext';
-import { OrderContext } from '../context/OrderContext';
+// import { CartContext } from '../context/CartContext';
+// import { OrderContext } from '../context/OrderContext';
 import Footer from '../components/Footer';
 
 const Checkout = () => {
@@ -19,7 +19,6 @@ const Checkout = () => {
     cvv: '',
     upiId: ''
   });
-const {PlaceOrder} = useContext(OrderContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { ProductContext } from '../../context/ProductContext';
 
 const AddProduct = () => {
 const [newProduct,setNewProduct] = useState({
@@ -9,7 +8,6 @@ const [newProduct,setNewProduct] = useState({
     price:0,
     image:''
 });
-const {products,setProducts,addProduct} = useContext(ProductContext);
 const handleChange=(e)=>{
     const name = e.target.name;
     const value = e.target.value;
