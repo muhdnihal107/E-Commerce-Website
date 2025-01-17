@@ -20,6 +20,7 @@ export const registerUser = createAsyncThunk('auth/register',async (credentials,
 export const loginJWT = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
   try {
     const responce = await axios.post(`${API_BASE_URL}/api/users/login`, credentials);
+    console.log(credentials);
     return responce.data;
   } catch (error) {
     console.log("log in request is not working");
@@ -70,7 +71,7 @@ const authSlice = createSlice({
       state.refreshToken = action.payload.refresh_token;
       state.user = action.payload.user; // Assuming the API returns user details as part of the response
       state.isAuthenticated = true;
-
+      localStorage.setItem('accessToken',action.payload.access_token);
       localStorage.setItem('authData', JSON.stringify({
         user: action.payload.user,
         accessToken: action.payload.access_token,
@@ -94,6 +95,7 @@ const authSlice = createSlice({
       state.user = null;
 
       localStorage.removeItem('authData');
+      localStorage.removeItem('accessToken');
     })
     builder.addCase(logoutUser.rejected, (state, action) => {
       state.loading = false;

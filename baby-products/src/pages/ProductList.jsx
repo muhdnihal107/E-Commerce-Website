@@ -48,11 +48,11 @@ import Footer from '../components/Footer';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProducts } from "../redux/slices/productSlice";
+import { addToCart } from '../redux/slices/cartSlice';
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
-  const {addToCart} = useSelector((state)=>state.cart)
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -60,6 +60,14 @@ const ProductList = () => {
   if (products.loading) {
     return (<h3>Products are loading...</h3>);
   }
+  
+  const handleAddToCart = (product_id)=>{
+    const itemData = {
+      product_id,
+      quantity:1
+    }
+    dispatch(addToCart(itemData))
+  };
 
   return (
     <>
@@ -78,7 +86,7 @@ const ProductList = () => {
               </p>
               <button
                 className='add-to-cart-btn'
-                onClick={() => addToCart(product)} >
+                onClick={()=>handleAddToCart(product.id)} >
                 Add to cart
               </button>
             </div>
