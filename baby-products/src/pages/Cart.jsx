@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { fetchCart, updateCartItemQuantity, clearCart } from '../redux/slices/cartSlice';
+import { fetchCart, updateCartItemQuantity, clearCart,removeCartItem } from '../redux/slices/cartSlice';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -14,25 +14,23 @@ const Cart = () => {
   }, [dispatch]);
 
 console.log(items);
-  // Navigate to checkout page
   const handleBtn = () => {
     navigate('/checkout');
   };
 
-  // Handle clear cart action
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
-  // Handle quantity update action
-  const handleQuantityUpdate = (itemId, action) => {
-    const { product, quantity } = items.find((item) => item.id === itemId);
-    dispatch(updateCartItemQuantity({ pk: itemId, action, product_id: product.id }));
+  const handleQuantityUpdate = (pk, product_id, action) => {
+    const dataupdateQuantity = { product_id, action };
+    dispatch(updateCartItemQuantity({ updatedata: dataupdateQuantity, pk }));
   };
 
   // Handle item removal
-  const handleRemoveItem = (itemId) => {
-    // Add your logic to remove an item from the cart if needed
+  const handleRemoveItem = (product_id,pk) => {
+    console.log(product_id,pk,"hyyyyyy");
+    dispatch(removeCartItem({product_id,pk}));
   };
 
   return (
@@ -58,20 +56,20 @@ console.log(items);
                   <div className="quantity-controls">
                     <button
                       className="quantity-dec-btn"
-                      onClick={() => handleQuantityUpdate(item.id, 'decrement')}
+                      onClick={() => handleQuantityUpdate(item.id,item.product.id, 'decrement',)}
                     >
                       -
                     </button>
                     <p className="product-quantity">{item.quantity}</p>
                     <button
                       className="quantity-inc-btn"
-                      onClick={() => handleQuantityUpdate(item.id, 'increment')}
+                      onClick={() => handleQuantityUpdate(item.id,item.product.id, 'increment')}
                     >
                       +
                     </button>
                   </div>
                 </div>
-                <button className="remove-btn" onClick={() => handleRemoveItem(item.id)}>
+                <button className="remove-btn" onClick={() => handleRemoveItem(item.product.id,item.id)}>
                   Remove
                 </button>
               </div>

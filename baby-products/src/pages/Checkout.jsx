@@ -2,6 +2,9 @@ import React, { useContext, useState } from 'react';
 // import { CartContext } from '../context/CartContext';
 // import { OrderContext } from '../context/OrderContext';
 import Footer from '../components/Footer';
+import dotenv from "dotenv"
+
+
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
