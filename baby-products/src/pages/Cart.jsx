@@ -89,9 +89,9 @@ console.log(items);
 
         <div className="cart-total-bill">
           <h1>Cart totals</h1>
-          <p>Subtotal: ₹{items?.total_price || 0}</p>
-          <p>Tax: ₹{(items?.total_price * 0.1) || 0}</p> {/* Example tax calculation */}
-          <p>Total: ₹{(items?.total_price * 1.1) || 0}</p> {/* Example total price */}
+          {/* <p>Total Price: ₹{totalPrice || 0}</p> */}
+          <p>Total Items: {totalItems}</p>
+          <p>Total: ₹{totalPrice || 0}</p> {/* Example total price */}
           <button className="cart-checkout-btn" onClick={handleBtn}>
             Proceed to Checkout
           </button>

@@ -3,48 +3,48 @@ import axios from 'axios';
 import Footer from '../components/Footer';
 
 const Order = () => {
-const [latestOrder,setLatestOrder] = useState([]);
-const [loading, setLoading] = useState(true); 
-const [error, setError] = useState(null); 
+// const [latestOrder,setLatestOrder] = useState([]);
+// const [loading, setLoading] = useState(true); 
+// const [error, setError] = useState(null); 
 
-const BASE_URL = 'http://localhost:4000/orders';
+// // const BASE_URL = 'http://localhost:4000/orders';
 
-useEffect(() => {
+// useEffect(() => {
 
-  const fetchOrders = async () => {
-    try {
-      const response = await axios.get(BASE_URL); 
-      const orders = response.data;
+//   const fetchOrders = async () => {
+//     try {
+//       const response = await axios.get(BASE_URL); 
+//       const orders = response.data;
 
-      if (orders.length > 0) {
-        const latestOrder = orders[orders.length - 1]; 
-        setLatestOrder(latestOrder);
-      }
-    } catch (err) {
-      console.error('Error fetching orders:', err);
-      setError('Failed to load orders.');
-    } finally {
-      setLoading(false);
-    }
-  };
+//       if (orders.length > 0) {
+//         const latestOrder = orders[orders.length - 1]; 
+//         setLatestOrder(latestOrder);
+//       }
+//     } catch (err) {
+//       console.error('Error fetching orders:', err);
+//       setError('Failed to load orders.');
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-  fetchOrders(); 
-}, []);
+//   fetchOrders(); 
+// }, []);
 
-if (loading) {
-  return <p>Loading order details...</p>;
-}
+// if (loading) {
+//   return <p>Loading order details...</p>;
+// }
 
-if (error) {
-  return <p>{error}</p>;
-}
+// if (error) {
+//   return <p>{error}</p>;
+// }
 
-if (!latestOrder) {
-  return <p>No orders available. Please place an order.</p>;
-}
+// if (!latestOrder) {
+//   return <p>No orders available. Please place an order.</p>;
+// }
   return (
     <>
-      <div className="order-summary">
+      {/* <div className="order-summary">
         <h1>Order Summary</h1>
         <div className="order-summary-details">
           <h3>Order ID: {latestOrder.orderId}</h3>
@@ -106,7 +106,7 @@ if (!latestOrder) {
             <h2>Total Amount: ₹{(latestOrder.totalAmount).toFixed(2)}</h2>
           </div>
         </div>
-      </div>
+      </div> */}
      <Footer/>
       </>
     );
