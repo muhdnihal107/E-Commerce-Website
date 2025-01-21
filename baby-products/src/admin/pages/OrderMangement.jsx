@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchAllOrders } from '../../redux/slices/orderSlice';
 
 const OrderMangement = () => {
+  const dispatch = useDispatch();
+  const {data,loading,error} = useSelector((state)=>state.order.orders);
 
   useEffect(()=>{
-    fetchOrder();
-  },[]);
+    dispatch(fetchAllOrders());
+  },[dispatch]);
 
-  
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
   <h1 className="text-3xl font-bold text-gray-800 mb-6">Order Management</h1>
@@ -28,19 +31,19 @@ const OrderMangement = () => {
         </tr>
       </thead>
       <tbody>
-        {totalOrders.length > 0 ? (
-          totalOrders.map((item) => (
+        {data.length > 0 ? (
+          data.map((item) => (
             <tr key={item.orderId} className="bg-white border-b hover:bg-gray-100">
-              <td className="px-4 py-2">{item.orderId}</td>
-              <td className="px-4 py-2">{item.firstName}</td>
-              <td className="px-4 py-2">{item.lastName}</td>
-              <td className="px-4 py-2">{item.phoneNumber}</td>
+              <td className="px-4 py-2">{item.order_id}</td>
+              <td className="px-4 py-2">{item.first_name}</td>
+              <td className="px-4 py-2">{item.last_name}</td>
+              <td className="px-4 py-2">{item.phone_number}</td>
               <td className="px-4 py-2">{item.orderDate}</td>
-              <td className="px-4 py-2">₹{item.subtotal}</td>
-              <td className="px-4 py-2">₹{item.tax}</td>
-              <td className="px-4 py-2">₹{item.totalAmount}</td>
+              <td className="px-4 py-2">₹{item.payment_amount}</td>
+              <td className="px-4 py-2">₹{item.payment_amount}</td>
+              <td className="px-4 py-2">₹{item.payment_amount}</td>
               <td className="px-4 py-2">
-                <Link to={`/admin/ordermanage/${item.orderId}`}>
+                <Link to={`/admin/ordermanage/${item.order_id}`}>
                 <button onClick={()=>handleViewBtn(item)} className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
                   View
                 </button>
@@ -60,7 +63,7 @@ const OrderMangement = () => {
 </div>
 
   )
-}
+};
 
 export default OrderMangement
 

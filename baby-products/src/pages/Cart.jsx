@@ -13,7 +13,6 @@ const Cart = () => {
       dispatch(fetchCart());
   }, [dispatch]);
 
-console.log(items);
   const handleBtn = () => {
     navigate('/checkout');
   };

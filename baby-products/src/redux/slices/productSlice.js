@@ -16,12 +16,44 @@ export const fetchProductdetail = createAsyncThunk('data/fetchproductdetail', as
     return responce.data;
 });
 
+export const editProduct = createAsyncThunk('data/editproduct',async({productData,pk},{rejectWithValue})=>{
+    try{
+        const response = await axios.patch(`http://127.0.0.1:8000/api/products/edit/${pk}`,productData);
+        return response.data
+    }catch(error){
+        return rejectWithValue(error.response?.data || 'An error occurred');
+    }
+});
+
+export const addProduct = createAsyncThunk('data/addproduct',async({productData},{rejectWithValue})=>{
+    try{
+        const response = await axios.post(`http://127.0.0.1:8000/api/products/add/`,productData);
+        return response.data
+    }catch(error){
+        return rejectWithValue(error.response?.data || 'An error occurred');
+    }
+});
+
+export const deleteProduct = createAsyncThunk('data/deleteProduct', async (pk, { rejectWithValue }) => {
+    try {
+        const response = await axios.delete(`http://127.0.0.1:8000/api/products/edit/${pk}`);
+        return response.data; 
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
+});
+
+
 const productSlice = createSlice({
     name: 'products',
     initialState: {
         categories: { data: [], loading: false },
         products: { data: [], loading: false },
         productdetails: { data: [],loading:false},
+        editStatus: { success: false, error: null, loading: false },
+        addStatus: { success: false, error: null, loading: false },
+        deleteStatus: { success: false, error: null, loading: false },
+
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -62,6 +94,54 @@ const productSlice = createSlice({
             state.productdetails.loading = false;
         });
 
+        builder.addCase(editProduct.pending, (state) => {
+            state.editStatus.loading = true;
+            state.editStatus.success = false;
+            state.editStatus.error = null;
+        });
+        builder.addCase(editProduct.fulfilled, (state, action) => {
+            state.editStatus.loading = false;
+            state.editStatus.success = true;
+            state.products.data = state.products.data.map((product) =>
+                product.id === action.payload.id ? action.payload : product
+            );
+        });
+        builder.addCase(editProduct.rejected, (state, action) => {
+            state.editStatus.loading = false;
+            state.editStatus.success = false;
+            state.editStatus.error = action.payload;
+        });
+
+        builder.addCase(addProduct.pending, (state) => {
+            state.addStatus.loading = true;
+            state.addStatus.success = false;
+            state.addStatus.error = null;
+          });
+          builder.addCase(addProduct.fulfilled, (state, action) => {
+            state.addStatus.loading = false;
+            state.addStatus.success = true;
+          });
+          builder.addCase(addProduct.rejected, (state, action) => {
+            state.addStatus.loading = false;
+            state.addStatus.success = false;
+            state.addStatus.error = action.payload;
+          });
+
+          builder.addCase(deleteProduct.pending, (state) => {
+            state.deleteStatus.loading = true;
+            state.deleteStatus.success = false;
+            state.deleteStatus.error = null;
+        });
+        builder.addCase(deleteProduct.fulfilled, (state, action) => {
+            state.deleteStatus.loading = false;
+            state.deleteStatus.success = true;
+            state.products.data = state.products.data.filter((product) => product.id !== action.payload);
+        });
+        builder.addCase(deleteProduct.rejected, (state, action) => {
+            state.deleteStatus.loading = false;
+            state.deleteStatus.success = false;
+            state.deleteStatus.error = action.payload;
+        });
     },
 
 });

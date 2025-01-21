@@ -1,47 +1,63 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom'
+import { editProduct, fetchProductdetail } from '../../redux/slices/productSlice';
 
 const EditProduct = () => {
-    const [editedProduct,setEditedProduct] = useState({
-            id: '',
-            name: '',
-            description: '',
-            price: 0,
-            image: ''
-            });
-    
-    const {id} =useParams();
-    useEffect(()=>{
-        const findProduct = products.find((item)=>item.id == id);
-        if(findProduct){
-            setEditedProduct(findProduct);
-        }else{
-            console.log('Product not found');
-            
-        }
-    },[id,products]);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleChange = (e)=>{
-        const name = e.target.name;
-        const value = e.target.value;
-        setEditedProduct({...editedProduct,[name]:value});
-    };
+  const { data: product, loading: productLoading } = useSelector((state) => state.products.productdetails);
+  const { success: editSuccess, loading: editLoading, error: editError } = useSelector((state) => state.products.editStatus);
 
-    const handleSubmit = async(e)=>{
-        e.preventDefault();
-        const success = await editProduct(editedProduct.id,editedProduct);
-        if(success){
-            setEditedProduct({
-                id: '',
-                name: '',
-                description: '',
-                price: 0,
-                image: ''
-            });
-        };
+  const [editedProduct, setEditedProduct] = useState({
+    name: '',
+    description: '',
+    price: 0,
+    image: ''
+  });
 
-    };
-    
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchProductdetail(id));
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    if (product) {
+      setEditedProduct({
+        name: product.name || '',
+        description: product.description || '',
+        price: product.price || 0,
+        image: product.image || '',
+
+      });
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (editSuccess) {
+      alert('Product updated successfully!');
+      navigate('/admin/productmanage'); // Navigate to the product list or another page after success
+    }
+  }, [editSuccess, navigate]);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setEditedProduct({ ...editedProduct, [name]: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(editProduct({ productData: editedProduct, pk: id }));
+
+  };
+
+  if (productLoading) {
+    return <div>Loading product details...</div>;
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">Edit Product</h1>
@@ -49,15 +65,7 @@ const EditProduct = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="product-id" className="block text-gray-700 font-medium mb-2">Product ID</label>
-            <input
-              type="number"
-              name="id"
-              id="product-id"
-              placeholder={editedProduct.id}
-              value={editedProduct.id}
-              onChange={handleChange}
-              className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
-            />
+            <p>{id}</p>
           </div>
           <div>
             <label htmlFor="product-name" className="block text-gray-700 font-medium mb-2">Product Name</label>
@@ -116,9 +124,9 @@ const EditProduct = () => {
           </div>
         </form>
       </div>
-   </div>
-   
+    </div>
+
   )
-}
+};
 
 export default EditProduct

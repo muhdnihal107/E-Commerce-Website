@@ -7,8 +7,7 @@ import { loginJWT } from '../redux/slices/authSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const {loading,error,isAuthenticated} = useSelector((state)=>state.auth);
-
+  const {loading,error,isAuthenticated,user} = useSelector((state)=>state.auth);
   const [inputs,setInputs] = useState({
     email: '',
     password: ''
@@ -27,31 +26,17 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginJWT(inputs));
+   await dispatch(loginJWT(inputs));
 
-    // try {
-      
-    //   const success = await login(inputs.email, inputs.password);  
-      
-    //   if (success=== 'admin') {
-    //     alert('You are successfully logged in');
-    //     console.log('You are successfully logged in');
-    //     setLoginerr(false);
-    //     navigate('/admin/dashboard');  
-    //   } else if(success === 'user') {
-    //     alert('You are successfully logged in');
-    //     navigate('/');
-    //   }else{
-    //     setLoginerr(true);
-    //   }
-    // } catch (error) {
-    //   console.error('Error during login submission:', error);
-    //   setLoginerr(true);  
-    // }
+     if (isAuthenticated){
+     if(user.is_staff){
+       navigate('/admin');
+     }else{
+       navigate('/');
+     }
+   }; 
   };
-  if (isAuthenticated){
-    navigate('/');
-  } 
+  
 
   return (
     <section className='login-page'>

@@ -1,62 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import Footer from '../components/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrder } from '../redux/slices/orderSlice';
 
 const Order = () => {
-// const [latestOrder,setLatestOrder] = useState([]);
-// const [loading, setLoading] = useState(true); 
-// const [error, setError] = useState(null); 
+  const dispatch = useDispatch();
+  const { order,loading,error} = useSelector((state)=>state.order);
 
-// // const BASE_URL = 'http://localhost:4000/orders';
+  useEffect(()=>{
+    dispatch(fetchOrder());
+  },[dispatch])
 
-// useEffect(() => {
+console.log(order);
 
-//   const fetchOrders = async () => {
-//     try {
-//       const response = await axios.get(BASE_URL); 
-//       const orders = response.data;
-
-//       if (orders.length > 0) {
-//         const latestOrder = orders[orders.length - 1]; 
-//         setLatestOrder(latestOrder);
-//       }
-//     } catch (err) {
-//       console.error('Error fetching orders:', err);
-//       setError('Failed to load orders.');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   fetchOrders(); 
-// }, []);
-
-// if (loading) {
-//   return <p>Loading order details...</p>;
-// }
-
-// if (error) {
-//   return <p>{error}</p>;
-// }
-
-// if (!latestOrder) {
-//   return <p>No orders available. Please place an order.</p>;
-// }
   return (
-    <>
-      {/* <div className="order-summary">
+    <>{order !== null ?(
+       <div className="order-summary">
         <h1>Order Summary</h1>
         <div className="order-summary-details">
-          <h3>Order ID: {latestOrder.orderId}</h3>
-          <h3>Status: {latestOrder.status}</h3>
-          <h3>Order Date: {latestOrder.orderDate}</h3>
+          <h3>Order ID: {order.id}</h3>
+          <h3>Status: {order.status}</h3>
+          <h3>Order Date: {order.orderDate}</h3>
   
-          <div className="order-products">
+           <div className="order-products">
             <h2>Products:</h2>
             <ul>
-              {latestOrder.products.map((product, index) => (
+              {order.orderitems.map((item, index) => (
                 <li key={index}>
-                  Product Name: {product.productName} | Quantity: {product.quantity}
+                  Product Name: {item.product.name} | Quantity: {item.quantity}
                 </li>
               ))}
             </ul>
@@ -65,48 +37,46 @@ const Order = () => {
           <div className="shipping-info">
             <h2>Shipping Information:</h2>
             <p>
-              <strong>Name:</strong> {latestOrder.firstName} {latestOrder.lastName}
+              <strong>Name:</strong> {order.first_name} {order.last_name}
             </p>
             <p>
-              <strong>Phone:</strong> {latestOrder.phoneNumber}
+              <strong>Phone:</strong> {order.phone_number}
             </p>
             <p>
-              <strong>Email:</strong> {latestOrder.email}
+              <strong>Email:</strong> {order.email}
             </p>
             <p>
-              <strong>Address:</strong> {latestOrder.address}, {latestOrder.city}, {latestOrder.state} - {latestOrder.pincode}
+              <strong>Address:</strong> {order.address}, {order.state} - {order.pincode}
+            </p>
+            <p>
+              <strong>Status:</strong> {order.status}
             </p>
           </div>
   
           <div className="payment-info">
             <h2>Payment Information:</h2>
             <p>
-              <strong>Payment Method:</strong> {latestOrder.paymentMethod}
+              <strong>Payment Method:</strong> {order.payment_method}
             </p>
-            {latestOrder.paymentMethod === 'creditCard' && (
-              <p>
-                <strong>Card Number:</strong> **** **** **** {latestOrder.cardNumber.slice(-4)}
-              </p>
-            )}
-            {latestOrder.paymentMethod === 'upi' && (
-              <p>
-                <strong>UPI ID:</strong> {latestOrder.upiId}
-              </p>
-            )}
-            {latestOrder.paymentMethod === 'netBanking' && (
-              <p>
-                <strong>Bank:</strong> 
-              </p>
-            )}
+            <p>
+              <strong>Payment Status:</strong>{order.payment_status}
+            </p>
+            
           </div>
   
           <div className="order-total">
-            <h2>Subtotal: ₹{(latestOrder.subtotal).toFixed(2)}</h2>
-            <h2>Tax: ₹{(latestOrder.tax).toFixed(2)}</h2>
-            <h2>Total Amount: ₹{(latestOrder.totalAmount).toFixed(2)}</h2>
+            <h2>Subtotal:</h2>
+            <h2>Tax: ₹</h2>
+            <h2>Total Amount: ₹{(order.payment_amount)}</h2>
           </div>
         </div>
-      </div> */}
+      </div> ):(
+        <div>
+          <p>
+            loading
+          </p>
+        </div>
+      )}
      <Footer/>
       </>
     );

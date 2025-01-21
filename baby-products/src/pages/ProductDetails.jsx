@@ -7,14 +7,12 @@ import { fetchProductdetail } from '../redux/slices/productSlice';
 const ProductDetails = () => {
   const dispatch = useDispatch()
   const {data,loading} = useSelector((state)=> state.products.productdetails)
-  // const {products,isLoading} = useContext(ProductContext);
   const {id} = useParams();
 
   useEffect(()=>{
     dispatch(fetchProductdetail(id));
   },[dispatch,id]);
   
-  // const product = products.find(prod => prod.id == parseInt(id));
    console.log(id);
   if (loading){
     return <div>Loading...</div>

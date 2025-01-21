@@ -1,10 +1,20 @@
-import React, { useContext, useEffect } from 'react';
+import React, {  useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchProducts } from '../../redux/slices/productSlice';
 
 const ProductManagement = () => {
-useEffect(()=>{
-  fetchProducts();
-},[])
+  const dispatch =  useDispatch();
+  const {products} = useSelector((state)=>state.products);
+
+   useEffect(() => {
+      dispatch(fetchProducts());
+    }, [dispatch]);
+
+
+if (products.loading) {
+  return (<h3>Products are loading...</h3>);
+}
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Product Management</h1>
@@ -21,7 +31,7 @@ useEffect(()=>{
             </tr>
           </thead>
           <tbody>
-            {products.map((item) => (
+            {products != null?products.data.map((item) => (
               <tr key={item.id} className="border-b border-gray-200">
                 <td className="py-4 px-6">{item.id}</td>
                 <td className="py-4 px-6">
@@ -42,7 +52,13 @@ useEffect(()=>{
                   </Link>
                 </td>
               </tr>
-            ))}
+            )):(
+              <div>
+                <p>
+                  loading
+                </p>
+              </div>
+            )}
           </tbody>
         </table>
       </div>

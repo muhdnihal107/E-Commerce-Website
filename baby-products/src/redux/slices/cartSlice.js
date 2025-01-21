@@ -9,7 +9,6 @@ export const fetchCart = createAsyncThunk('cart/fetchcart', async (_, { rejectWi
         const response = await axios.get(`${API_BASE_URL}/api/cart/list/`, {
             headers: { Authorization: `Bearer ${token}`, },
         });
-        console.log("Fetched Cart Data:", response.data);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -47,7 +46,6 @@ export const updateCartItemQuantity = createAsyncThunk('cart/updateQuantity', as
         const response = await axios.patch(`http://127.0.0.1:8000/api/cart/quantity/${pk}`, updatedata,
             { headers: { Authorization: `Bearer ${token}` }, }
         );
-        console.log('wwwwwwwwww', updatedata);
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response?.data || 'An error occurred');

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
-import { createOrder } from '../redux/slices/orderSlice';
+import { createOrder,fetchOrder } from '../redux/slices/orderSlice';
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const {totalPrice} = useSelector((state)=>state.cart)
+  const {totalPrice,order} = useSelector((state)=>state.cart)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -50,13 +50,12 @@ const Checkout = () => {
       city: formData.city,
       pincode: formData.pincode,
       payment_method: formData.paymentMethod,
-      upi_id: formData.paymentMethod === 'upi' ? formData.upiId : null,
+      // upi_id: formData.paymentMethod === 'upi' ? formData.upiId : null,
       payment_amount: totalPrice
     };
-    console.log(orderData.payment_amount);
 
     try {
-      await dispatch(createOrder(orderData));
+      await dispatch(createOrder({orderData: orderData}));
       alert('Order placed successfully!');
       setFormData({
         firstName: '',

@@ -1,7 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchUsers } from '../../redux/slices/authSlice';
 
 const Customers = () => {
+  const dispatch = useDispatch();
+  const {users} = useSelector((state)=>state.auth);
+  useEffect(()=>{
+    dispatch(fetchUsers());
+
+  },[dispatch])
+
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
   <h1 className="text-3xl font-bold mb-6 text-center">User Management</h1>
@@ -18,7 +28,7 @@ const Customers = () => {
         </tr>
       </thead>
       <tbody className="text-gray-600 text-sm font-light">
-        {totalUser.map((item) => (
+        {users.data.map((item) => (
           <tr key={item.id} className="border-b border-gray-200 hover:bg-gray-100">
             <td className="py-3 px-6 text-left whitespace-nowrap">{item.id}</td>
             <td className="py-3 px-6 text-left">{item.name}</td>

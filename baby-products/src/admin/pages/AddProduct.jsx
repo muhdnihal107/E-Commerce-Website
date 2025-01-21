@@ -1,12 +1,17 @@
 import React, { useContext, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { addProduct } from '../../redux/slices/productSlice';
 
 const AddProduct = () => {
+
+  const dispatch = useDispatch();
+  const {success, loading, error} = useSelector((state)=>state.products.addStatus);
 const [newProduct,setNewProduct] = useState({
-    id:'',
     name:'',
     description:'',
     price:0,
-    image:''
+    image:'',
+    category:0,
 });
 const handleChange=(e)=>{
     const name = e.target.name;
@@ -14,22 +19,12 @@ const handleChange=(e)=>{
     setNewProduct({...newProduct,[name]: value});
 };
 
-const handleSubmit = async(e)=>{
-   e.preventDefault();
-   console.log(newProduct);
-  
-  const success= await addProduct(newProduct);
-  if(success){
-    setNewProduct((item)=>[...item,newProduct]);
-  };
-   setNewProduct({
-    id:'',
-    name:'',
-    description:'',
-    price:0,
-    image:''
-});
-}
+const handleSubmit = (e) => {
+  e.preventDefault();
+  dispatch(addProduct(newProduct));
+};
+
+
 
   return (
 
@@ -37,18 +32,6 @@ const handleSubmit = async(e)=>{
       <h1 className="text-2xl font-bold mb-6 text-gray-800">Add Product</h1>
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="product-id" className="block text-gray-700 font-medium mb-2">Product ID</label>
-            <input
-              type="number"
-              name="id"
-              id="product-id"
-              placeholder="Product ID"
-              value={newProduct.id}
-              onChange={handleChange}
-              className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
-            />
-          </div>
           <div>
             <label htmlFor="product-name" className="block text-gray-700 font-medium mb-2">Product Name</label>
             <input
@@ -92,6 +75,18 @@ const handleSubmit = async(e)=>{
               id="product-image"
               placeholder="Product Image URL"
               value={newProduct.image}
+              onChange={handleChange}
+              className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+            />
+          </div>
+          <div>
+            <label htmlFor="product-category" className="block text-gray-700 font-medium mb-2">Product Category</label>
+            <input
+              type="number"
+              name="category"
+              id="product-category"
+              placeholder="Product Category"
+              value={newProduct.category}
               onChange={handleChange}
               className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />

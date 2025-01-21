@@ -93,7 +93,7 @@ const Register = () => {
             className='form-control'
             name='password'
             id='pass'
-            pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
+            pattern='^.{6,}$'
             placeholder='Password'
             value={inputs.password}
             onChange={handleChange}
