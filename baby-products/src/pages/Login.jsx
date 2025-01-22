@@ -2,7 +2,8 @@ import React,{useContext, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginJWT } from '../redux/slices/authSlice';
-//import { AuthContext } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
+
 
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
   //const {login,isAuthenticated} = useContext(AuthContext);
   const navigate = useNavigate();
   
-  
+
   const handleChange = (e)=>{
     const name = e.target.name;
     const value = e.target.value;
@@ -29,6 +30,7 @@ const Login = () => {
    await dispatch(loginJWT(inputs));
 
      if (isAuthenticated){
+
      if(user.is_staff){
        navigate('/admin');
      }else{
@@ -69,8 +71,8 @@ const Login = () => {
           <div>
             <button className='sign-btn' type='submit' disabled={loading}>Sign In</button>
           </div>
-          <span id='login-err' className={loginerr ? 'show' : ''}>Your username or password is invalid{error && <p>{error}</p>}</span>
-
+          <span id='login-err' className={error ? 'show' : ''}>Your username or password is invalid{error && <p>{error}</p>}</span>
+            <span><Link to={'/register'}>Register</Link></span>
         </form>
         
       </div>

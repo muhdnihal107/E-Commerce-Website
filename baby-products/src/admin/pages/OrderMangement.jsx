@@ -25,7 +25,6 @@ const OrderMangement = () => {
           <th className="px-4 py-2 text-gray-600">Phone Number</th>
           <th className="px-4 py-2 text-gray-600">Date</th>
           <th className="px-4 py-2 text-gray-600">Product Amount</th>
-          <th className="px-4 py-2 text-gray-600">Tax</th>
           <th className="px-4 py-2 text-gray-600">Total Amount</th>
           <th className="px-4 py-2 text-gray-600">Actions</th>
         </tr>
@@ -34,17 +33,16 @@ const OrderMangement = () => {
         {data.length > 0 ? (
           data.map((item) => (
             <tr key={item.orderId} className="bg-white border-b hover:bg-gray-100">
-              <td className="px-4 py-2">{item.order_id}</td>
+              <td className="px-4 py-2">{item.id}</td>
               <td className="px-4 py-2">{item.first_name}</td>
               <td className="px-4 py-2">{item.last_name}</td>
               <td className="px-4 py-2">{item.phone_number}</td>
-              <td className="px-4 py-2">{item.orderDate}</td>
-              <td className="px-4 py-2">₹{item.payment_amount}</td>
+              <td className="px-4 py-2">{item.created_at}</td>
               <td className="px-4 py-2">₹{item.payment_amount}</td>
               <td className="px-4 py-2">₹{item.payment_amount}</td>
               <td className="px-4 py-2">
-                <Link to={`/admin/ordermanage/${item.order_id}`}>
-                <button onClick={()=>handleViewBtn(item)} className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
+                <Link to={`/admin/ordermanage/${item.id}`}>
+                <button  className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
                   View
                 </button>
                 </Link>

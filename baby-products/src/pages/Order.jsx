@@ -26,7 +26,7 @@ console.log(order);
            <div className="order-products">
             <h2>Products:</h2>
             <ul>
-              {order.orderitems.map((item, index) => (
+              {order.orderitems?.map((item, index) => (
                 <li key={index}>
                   Product Name: {item.product.name} | Quantity: {item.quantity}
                 </li>

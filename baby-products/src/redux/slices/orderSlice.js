@@ -3,13 +3,23 @@ import axios from "axios";
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
+export const fetchOrderDetail = createAsyncThunk('order/fecthorderdetail',async (pk,{rejectWithValue})=>{
+    try{
+        const token = localStorage.getItem('accessToken');
+        const response = await axios.get(`${API_BASE_URL}/api/orders/details/${pk}`        );
+        return response.data
+    }catch(error){
+        return rejectWithValue(error.response?.data || 'An error occurred');
+    }
+
+});
+
 export const fetchOrder = createAsyncThunk('order/fecthOrder',async (_,{rejectWithValue})=>{
     try{
         const token = localStorage.getItem('accessToken');
         const response = await axios.get(`${API_BASE_URL}/api/orders/detail/`,
             { headers: { Authorization: `Bearer ${token}` }, }
         );
-        console.log('iiiiiii',response.data);
         return response.data
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');
@@ -37,7 +47,6 @@ export const fetchAllOrders = createAsyncThunk('order/fetchallorders',async (_,{
         const response = await axios.get(`${API_BASE_URL}/api/orders/create/`,
             { headers: { Authorization: `Bearer ${token}` }, }
         );
-        console.log('kkkkkk',response.data);
         return response.data;
     }catch (error){
         return rejectWithValue(error.response?.data || 'An error occurred');
@@ -51,7 +60,8 @@ const orderSlice = createSlice({
         order: null,
         loading: false,
         error: null,
-        orders:{data:[],loading:false,error:null}
+        orders:{data:[],loading:false,error:null},
+        orderdetails:{orderData:[],loading:false,error:null},
     },
     reducers:{},
     extraReducers:(builder)=>{
@@ -93,6 +103,19 @@ const orderSlice = createSlice({
             .addCase(fetchAllOrders.rejected,(state,action)=>{
                 state.orders.loading = false;
                 state.orders.error = action.payload;
+            })
+
+            .addCase(fetchOrderDetail.pending,(state,action)=>{
+                state.orderdetails.loading = true;
+                state.orderdetails.error = null;
+            })
+            .addCase(fetchOrderDetail.fulfilled,(state,action)=>{
+                state.orderdetails.loading = false;
+                state.orderdetails.orderData = action.payload;
+            })
+            .addCase(fetchOrderDetail.rejected,(state,action)=>{
+                state.orderdetails.loading = false;
+                state.orderdetails.error = action.payload;
             });
 
     }

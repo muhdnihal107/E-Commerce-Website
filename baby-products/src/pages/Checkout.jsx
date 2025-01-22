@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
 import { createOrder,fetchOrder } from '../redux/slices/orderSlice';
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -212,8 +213,11 @@ const Checkout = () => {
             )}
 
             <div>
+
               <button className="submit-button" type="submit">
-                Place Order
+                <Link to={'/order'}>
+            Place Order
+                </Link>
               </button>
             </div>
           </div>

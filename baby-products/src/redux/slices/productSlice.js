@@ -4,7 +4,17 @@ import axios from "axios";
 export const fetchCategories = createAsyncThunk('data/fetchCategories', async () => {
     const responce = await axios.get('http://127.0.0.1:8000/api/products/category/');
     return responce.data;
-})
+});
+
+export const fetchProductByCategory = createAsyncThunk('data/fetchproductbycategories', async (category_id,{rejectWithValue}) => {
+   try {
+    const responce = await axios.get(`http://127.0.0.1:8000/api/products/category/${category_id}`);
+    return responce.data;
+}catch(error){
+    return rejectWithValue(error.response?.data || 'An error occurred');
+
+}
+});
 
 export const fetchProducts = createAsyncThunk('data/fetchproducts', async () => {
     const responce = await axios.get('http://127.0.0.1:8000/api/products/list/');
@@ -19,16 +29,17 @@ export const fetchProductdetail = createAsyncThunk('data/fetchproductdetail', as
 export const editProduct = createAsyncThunk('data/editproduct',async({productData,pk},{rejectWithValue})=>{
     try{
         const response = await axios.patch(`http://127.0.0.1:8000/api/products/edit/${pk}`,productData);
-        return response.data
+        return response.data;
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');
     }
 });
 
-export const addProduct = createAsyncThunk('data/addproduct',async({productData},{rejectWithValue})=>{
+export const addProduct = createAsyncThunk('data/addproduct',async({newProduct},{rejectWithValue})=>{
     try{
-        const response = await axios.post(`http://127.0.0.1:8000/api/products/add/`,productData);
-        return response.data
+        console.log(newProduct,'vvvvvvv');
+        const response = await axios.post(`http://127.0.0.1:8000/api/products/add/`,newProduct);
+        return response.data;
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');
     }
@@ -53,7 +64,7 @@ const productSlice = createSlice({
         editStatus: { success: false, error: null, loading: false },
         addStatus: { success: false, error: null, loading: false },
         deleteStatus: { success: false, error: null, loading: false },
-
+        productByCategory:{data:[],loading:false},
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -142,6 +153,18 @@ const productSlice = createSlice({
             state.deleteStatus.success = false;
             state.deleteStatus.error = action.payload;
         });
+
+        builder.addCase(fetchProductByCategory.pending, (state) => {
+            state.productByCategory.loading = true;
+        });
+        builder.addCase(fetchProductByCategory.fulfilled, (state, action) => {
+            state.productByCategory.loading = false;
+            state.productByCategory.data = action.payload;
+        });
+        builder.addCase(fetchProductByCategory.rejected, (state) => {
+            state.productByCategory.loading = false;
+        });
+
     },
 
 });

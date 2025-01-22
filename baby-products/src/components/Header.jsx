@@ -29,14 +29,14 @@ const Header = () => {
     <div>
       <nav className='navbar'>
         <div className='logo'>
-          <img src={"https://www.freepik.com/free-vector/detailed-baby-logo-template_11583053.htm#fromView=keyword&page=1&position=33&uuid=772bb3a4-58dd-4e34-ac51-64d375884187&new_detail=true"} alt="Baby Hub logo" />
+          <img  alt="" />
         </div>
         <div className='list-con'>
            <ul>
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/product'>Products</Link></li>
           <li><Link to='/cart'>Cart</Link></li>
-          <li><Link to='/order'>Orders</Link></li>
+          <li><Link to='/'>About</Link></li>
         </ul>
         </div>
         <div className='list-con2'>

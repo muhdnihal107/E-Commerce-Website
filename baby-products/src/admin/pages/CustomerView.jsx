@@ -3,19 +3,28 @@ import ProfileLogo from '../assets/account.png';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserdetail } from '../../redux/slices/authSlice';
+import { fetchUserCartItems } from '../../redux/slices/cartSlice';
 
 const CustomerView = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const {data,loading,error} = useSelector((state)=>state.auth.userdetails);
+    const {item} = useSelector((state)=>state.cart.user);
 
     useEffect(()=>{
       dispatch(fetchUserdetail(id));
     }
     ,[id,dispatch]);
+
+    useEffect(()=>{
+      dispatch(fetchUserCartItems(id))
+    },[dispatch]);
+
+
+
     if (loading) {
         return <p>Loading user data...</p>;  
-      }
+      };
 
       
   return (
@@ -45,22 +54,24 @@ const CustomerView = () => {
     
     <h1 className="text-2xl font-bold mb-4">User Cart</h1>
     
-    {data?.cart?.length > 0 ? (
-      userView.cart.map((p) => (
-        <div key={p.id} className="bg-gray-50 p-4 rounded-lg shadow mb-4">
-          <div className="flex space-x-4 items-center">
-            <img src={p.image} alt="product image" className="w-16 h-16 rounded-lg object-cover" />
-            <div>
-              <p className="text-lg font-medium">{p.name}</p>
-              <p className="text-sm text-gray-600">Quantity: {p.quantity}</p> 
-              <p className="text-sm text-gray-600">Price: ₹{p.price}</p>
-            </div>
-          </div>
+    {item?.length > 0 ? (
+  item.map((cartItem) => (
+    <div key={cartItem.product.id} className="bg-gray-50 p-4 rounded-lg shadow mb-4">
+      <div className="flex space-x-4 items-center">
+        {/* Uncomment the following line if the product image is available */}
+        {/* <img src={cartItem.product.image} alt="product image" className="w-16 h-16 rounded-lg object-cover" /> */}
+        <div>
+          <p className="text-lg font-medium">{cartItem.product.name}</p>
+          <p className="text-sm text-gray-600">Quantity: {cartItem.quantity}</p> 
+          <p className="text-sm text-gray-600">Price: ₹{cartItem.product.price}</p>
         </div>
-      ))
-    ) : (
-      <p className="text-center text-gray-500">No products in cart</p>
-    )}
+      </div>
+    </div>
+  ))
+) : (
+  <p className="text-center text-gray-500">No products in cart</p>
+)}
+
   </div>
 </div>
 

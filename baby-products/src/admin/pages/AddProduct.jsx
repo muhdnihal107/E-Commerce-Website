@@ -1,27 +1,38 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct } from '../../redux/slices/productSlice';
+import { addProduct, fetchCategories } from '../../redux/slices/productSlice';
 
 const AddProduct = () => {
 
   const dispatch = useDispatch();
   const {success, loading, error} = useSelector((state)=>state.products.addStatus);
+  const {data } = useSelector((state)=>state.products.categories);
 const [newProduct,setNewProduct] = useState({
     name:'',
     description:'',
     price:0,
     image:'',
-    category:0,
+    category:'',
 });
+
+useEffect(() => {
+    dispatch(fetchCategories());
+}, [dispatch]);
+
+
 const handleChange=(e)=>{
     const name = e.target.name;
     const value = e.target.value;
     setNewProduct({...newProduct,[name]: value});
 };
 
+console.log(
+  newProduct
+);
+
 const handleSubmit = (e) => {
   e.preventDefault();
-  dispatch(addProduct(newProduct));
+  dispatch(addProduct({newProduct}));
 };
 
 
@@ -81,15 +92,19 @@ const handleSubmit = (e) => {
           </div>
           <div>
             <label htmlFor="product-category" className="block text-gray-700 font-medium mb-2">Product Category</label>
-            <input
-              type="number"
-              name="category"
-              id="product-category"
-              placeholder="Product Category"
-              value={newProduct.category}
-              onChange={handleChange}
-              className="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
-            />
+            <select
+                        name="category"
+                        value={newProduct.category}
+                        onChange={handleChange}
+                        className="w-full border rounded p-2"
+                    >
+                        <option value="">Select Category</option>
+                        {data.map((category) => (
+                            <option key={category.id} value={category.name}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
           </div>
           <div>
             <button
@@ -98,6 +113,9 @@ const handleSubmit = (e) => {
             >
               Add Product
             </button>
+            {loading && <p>Loading...</p>}
+                {success && <p>Product added successfully!</p>}
+                {error && <p>Error: {error}</p>}
           </div>
         </form>
       </div>
