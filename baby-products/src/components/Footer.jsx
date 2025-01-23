@@ -12,7 +12,6 @@ const Footer = () => {
  <div className='info-con'>
     <div className='info-1'>
       <div className='info-div'>
-         <img className='footer-logo' src={logo} alt="" />
          <p>123 Fifth Ave, New</p>
          <p>York, NY 12004.</p>
          <p>+1 123 456 78 90</p>

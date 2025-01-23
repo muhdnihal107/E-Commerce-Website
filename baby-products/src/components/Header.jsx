@@ -27,7 +27,29 @@ const Header = () => {
   
   return (
     <div>
-      <nav className='navbar'>
+
+<header className="bg-white shadow">
+        <div className="container mx-auto flex justify-between items-center p-4">
+          <div className="text-2xl font-bold text-blue-600">BabyStore</div>
+          <nav className="space-x-6">
+            <a className="text-gray-700 hover:text-blue-600"><Link to='/'>Home</Link></a>
+            <a className="text-gray-700 hover:text-blue-600"><Link to='/product'>Shop</Link></a>
+            <a href="#" className="text-gray-700 hover:text-blue-600">Offers</a>
+            <a href="#" className="text-gray-700 hover:text-blue-600">Contact</a>
+          </nav>
+          <div className="space-x-4 flex items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="border rounded px-2 py-1"
+            />
+            <a href="#" className="text-gray-700 hover:text-blue-600"><Link to={'/cart'}>Cart</Link></a>
+            <a href="#" className="text-gray-700 hover:text-blue-600">Profile</a>
+          </div>
+        </div>
+      </header>
+
+      {/* <nav className='navbar'>
         <div className='logo'>
           <img  alt="" />
         </div>
@@ -60,7 +82,7 @@ const Header = () => {
               </div></li>
            </ul>
         </div>
-      </nav>
+      </nav> */}
       <Outlet />
     </div>
   )

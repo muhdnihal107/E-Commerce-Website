@@ -53,6 +53,23 @@ export const fetchAllOrders = createAsyncThunk('order/fetchallorders',async (_,{
     }
 });
 
+export const verifyPayment = createAsyncThunk(
+    'order/verifyPayment',
+    async ({ razorpay_order_id, razorpay_payment_id, razorpay_signature }, { rejectWithValue }) => {
+      try {
+        const response = await axios.post(`${API_BASE_URL}/api/payment/verify/`, {
+          razorpay_order_id,
+          razorpay_payment_id,
+          razorpay_signature,
+        });
+        return response.data;
+      } catch (error) {
+        return rejectWithValue(error.response?.data || 'An error occurred');
+      }
+    }
+  );
+
+
 
 const orderSlice = createSlice({
     name: 'order',

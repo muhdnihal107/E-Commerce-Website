@@ -56,7 +56,34 @@ const Checkout = () => {
     };
 
     try {
-      await dispatch(createOrder({orderData: orderData}));
+      const orderResponse = await dispatch(createOrder({orderData: orderData}));
+
+      if (formData.paymentMethod === 'upi' && orderResponse.payload.razorpay_order_id) {
+        const options = {
+          key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay key ID
+          amount: orderResponse.payload.payment_amount * 100, // Amount in paise
+          currency: 'INR',
+          name: 'Your Company Name',
+          description: 'Order Payment',
+          image: 'https://your-logo-url.com', // Your logo
+          order_id: orderResponse.payload.razorpay_order_id, // Razorpay order ID
+          handler: function (response) {
+            const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
+
+            // Send the payment details to the backend for verification
+            dispatch(verifyPayment({ razorpay_order_id, razorpay_payment_id, razorpay_signature }));
+          },
+          prefill: {
+            name: formData.firstName + ' ' + formData.lastName,
+            email: formData.email,
+            phone: formData.phoneNumber,
+          },
+        };
+
+        const rzp = new window.Razorpay(options);
+        rzp.open();
+      }
+
       alert('Order placed successfully!');
       setFormData({
         firstName: '',

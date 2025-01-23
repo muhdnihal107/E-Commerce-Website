@@ -7,7 +7,7 @@
   
   body {
     /*overflow-x: hidden; */
-    background: linear-gradient(to bottom right, #6a82fb, #fc5c7d);/* Prevent horizontal scroll */
+    background: linear-gradient(to bottom right, #637cfade, #ec5774);/* Prevent horizontal scroll */
     font-family: 'Arial', sans-serif;
   }
   
@@ -140,8 +140,8 @@
   /*------------------------footer-----------------------------------------------------*/
  
   footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: #0e141a;
+    color: #8b9a9e;
     padding: 40px 20px; 
     border-top: 5px solid #3498db; 
   }
@@ -205,7 +205,7 @@
   }
   
   /*------------------------------------------------home page----------------------*/
-  .home {
+  /* .home {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -215,7 +215,6 @@
     position: relative;
   }
   
-  /* Text Container */
   .home-head-con {
     max-width: 50%;
     display: flex;
@@ -223,7 +222,6 @@
     justify-content: center;
   }
   
-  /* Top Banner Text */
   .home-text1 p {
     color: #ff5e5e;
     font-weight: bold;
@@ -231,7 +229,6 @@
     margin-bottom: 10px;
   }
   
-  /* Main Heading */
   .home-text2 h1 {
     font-size: 3.5rem;
     font-weight: bold;
@@ -243,7 +240,6 @@
     margin-top: 10px;
   }
   
-  /* Subtext Section */
   .home-text3 p {
     font-size: 1rem;
     color: #6f5a40;
@@ -255,7 +251,6 @@
     max-width: 90%;
   }
   
-  /* Shop Button */
   .home-btn button {
     background-color: #ff7373;
     color: white;
@@ -272,7 +267,6 @@
     background-color: #ff5e5e;
   }
   
-  /* Image Container */
   .home-img-con {
     position: relative;
     max-width: 45%;
@@ -283,11 +277,11 @@
     height: auto;
     object-fit: cover;
     border-radius: 20px;
-  }
+  } */
   /*.....................Register form---------------------------................*/
  /* Registration Section */
 .reg-section {
-  background: linear-gradient(to bottom right, #b892ff, #8deaff); /* Semi-transparent white background */
+  background: linear-gradient(to bottom right, #a17fe0, #8deaff); /* Semi-transparent white background */
   border-radius: 15px;
   padding: 30px;
   width: 100%;

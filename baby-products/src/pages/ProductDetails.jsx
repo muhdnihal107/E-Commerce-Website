@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
 import { fetchProductdetail } from '../redux/slices/productSlice';
+import { addToCart } from '../redux/slices/cartSlice';
 
 const ProductDetails = () => {
   const dispatch = useDispatch()
@@ -13,7 +14,15 @@ const ProductDetails = () => {
     dispatch(fetchProductdetail(id));
   },[dispatch,id]);
   
-   console.log(id);
+
+  const handleAddToCart = (product_id)=>{
+    const itemData = {
+      product_id,
+      quantity:1
+    }
+    dispatch(addToCart(itemData));
+  };
+
   if (loading){
     return <div>Loading...</div>
   }
@@ -34,7 +43,7 @@ const ProductDetails = () => {
             vlopnis qrtzyon. Ftnzywo pxedurc kmliotp qensyo vrgtiwl. Zrikfon vlxemyu ktprinew fowlbem gryxt. Dfbliyo 
             prxenmt olpujic wezoytr kmfcyob.</p>
             <p className='prod-price'><strong>₹{data.price}</strong></p>
-            <button onClick={()=>addToCart(product)} className='prod-detail-add-to-cart-btn'>Add to cart</button>
+            <button onClick={()=>handleAddToCart(data.id)} className='prod-detail-add-to-cart-btn'>Add to cart</button>
         </div>
       </div>
     </div>
