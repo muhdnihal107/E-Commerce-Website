@@ -4,31 +4,37 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import CartLogo from '../assets/shopping.png'
 import userlogo from '../assets/user.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { searchProducts } from '../redux/slices/productSlice'
 const Header = () => {
   // const {isAuthenticated, user} = useContext(AuthContext);
+  const dispatch = useDispatch();
   const [searchProduct,setSearchProduct] = useState('');
   const navigate = useNavigate();
   const {isAuthenticated} = useSelector((state)=>state.auth)
   const handleSearch = (e)=>{
     const search = e.target.value;
       setSearchProduct(search);
-      searchProducts(search);
+      dispatch(searchProducts({searchProduct}));
       navigate('/product');
      
   };
 
   const handleUserClick =()=>{
-  
+    if(isAuthenticated){
       navigate('/profile');
+
+    }else{
+navigate('/register');
+    }
     
     
-  }
+  };
   
   return (
     <div>
 
-<header className="bg-white shadow">
+<header className="w-full bg-white opacity-90 shadow">
         <div className="container mx-auto flex justify-between items-center p-4">
           <div className="text-2xl font-bold text-blue-600">BabyStore</div>
           <nav className="space-x-6">
@@ -42,9 +48,10 @@ const Header = () => {
               type="text"
               placeholder="Search..."
               className="border rounded px-2 py-1"
+              onChange={handleSearch}
             />
-            <a href="#" className="text-gray-700 hover:text-blue-600"><Link to={'/cart'}>Cart</Link></a>
-            <a href="#" className="text-gray-700 hover:text-blue-600">Profile</a>
+            <a className="text-gray-700 hover:text-blue-600"><Link to={'/cart'}><img className='w-8' src='src/assets/shopping.png'></img></Link></a>
+            <a onClick={handleUserClick} className="hover:text-blue-600"><img className='w-9' src='src/assets/user.png' alt="" /></a>
           </div>
         </div>
       </header>

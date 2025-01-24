@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
 import { createOrder,fetchOrder } from '../redux/slices/orderSlice';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -16,9 +16,11 @@ const Checkout = () => {
     city: '',
     state: '',
     pincode: '',
-    paymentMethod: 'upi', // Default to UPI
+    paymentMethod: 'upi', 
     upiId: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,19 +53,19 @@ const Checkout = () => {
       city: formData.city,
       pincode: formData.pincode,
       payment_method: formData.paymentMethod,
-      // upi_id: formData.paymentMethod === 'upi' ? formData.upiId : null,
-      payment_amount: totalPrice
-    };
+      payment_amount: totalPrice,
+ 
+    }
 
     try {
       const orderResponse = await dispatch(createOrder({orderData: orderData}));
 
-      if (formData.paymentMethod === 'upi' && orderResponse.payload.razorpay_order_id) {
+      // if (formData.paymentMethod === 'upi' && orderResponse.payload.razorpay_order_id) {
         const options = {
-          key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay key ID
-          amount: orderResponse.payload.payment_amount * 100, // Amount in paise
+          key: 'rzp_test_DgciG06wyFTpai', 
+          amount: orderResponse.payload.payment_amount * 100, 
           currency: 'INR',
-          name: 'Your Company Name',
+          name: 'BY-S',
           description: 'Order Payment',
           image: 'https://your-logo-url.com', // Your logo
           order_id: orderResponse.payload.razorpay_order_id, // Razorpay order ID
@@ -82,9 +84,10 @@ const Checkout = () => {
 
         const rzp = new window.Razorpay(options);
         rzp.open();
-      }
+      
 
       alert('Order placed successfully!');
+      
       setFormData({
         firstName: '',
         lastName: '',
@@ -97,6 +100,8 @@ const Checkout = () => {
         paymentMethod: 'upi',
         upiId: '',
       });
+
+      navigate('/order');
     } catch (error) {
       alert('Failed to place order. Please try again.');
     }
@@ -242,9 +247,8 @@ const Checkout = () => {
             <div>
 
               <button className="submit-button" type="submit">
-                <Link to={'/order'}>
             Place Order
-                </Link>
+                
               </button>
             </div>
           </div>

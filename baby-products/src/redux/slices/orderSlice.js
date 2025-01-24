@@ -57,7 +57,7 @@ export const verifyPayment = createAsyncThunk(
     'order/verifyPayment',
     async ({ razorpay_order_id, razorpay_payment_id, razorpay_signature }, { rejectWithValue }) => {
       try {
-        const response = await axios.post(`${API_BASE_URL}/api/payment/verify/`, {
+        const response = await axios.post(`${API_BASE_URL}/api/orders/verify/`, {
           razorpay_order_id,
           razorpay_payment_id,
           razorpay_signature,

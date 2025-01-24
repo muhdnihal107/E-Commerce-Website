@@ -24,7 +24,7 @@ export const loginJWT = createAsyncThunk('auth/login', async (credentials, { rej
     return responce.data;
   } catch (error) {
     console.log("log in request is not working");
-    return rejectWithValue(error.responce.data);
+    return rejectWithValue(error.response?.data || 'An error occurred');
   }
 });
 

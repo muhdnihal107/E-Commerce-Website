@@ -1,7 +1,7 @@
 import React from 'react'
 import baby1img from '../assets/home-baby-img.png'
 import Footer from '../components/Footer'
-
+import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <>
@@ -36,10 +36,11 @@ const Home = () => {
             <h1 className="text-4xl font-bold mb-4">Welcome to BabyStore</h1>
             <p className="text-lg mb-6">Get the best deals on baby products today!</p>
             <a
-              href="#"
               className="bg-white text-blue-600 px-4 py-2 rounded font-semibold"
             >
+              <Link to='/product'>
               Shop Now
+              </Link>
             </a>
           </div>
           <img

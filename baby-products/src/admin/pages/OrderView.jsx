@@ -32,6 +32,7 @@ console.log(orderData);
         <p><strong>Payment Details:</strong> {orderData.payment_method}</p>
         <p><strong>Order Date:</strong> {orderData.created_at}</p>
         <p><strong>Status:</strong> {orderData.status}</p>
+        <p><strong>Payment Status:</strong>{orderData.payment_status}</p>
         <p><strong>Total Amount:</strong> ₹{orderData.payment_amount}</p>
       </div>
       <h4 className="text-lg font-medium text-gray-700 mt-6">Products:</h4>

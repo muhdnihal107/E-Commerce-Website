@@ -37,7 +37,6 @@ export const editProduct = createAsyncThunk('data/editproduct',async({productDat
 
 export const addProduct = createAsyncThunk('data/addproduct',async({newProduct},{rejectWithValue})=>{
     try{
-        console.log(newProduct,'vvvvvvv');
         const response = await axios.post(`http://127.0.0.1:8000/api/products/add/`,newProduct);
         return response.data;
     }catch(error){
@@ -54,6 +53,15 @@ export const deleteProduct = createAsyncThunk('data/deleteProduct', async (pk, {
     }
 });
 
+export const searchProducts = createAsyncThunk('data/searchproducts',async({searchProduct},{rejectWithValue})=>{
+    try{
+        const response = await axios.get(`http://127.0.0.1:8000/api/products/search/`,searchProduct);
+        return response.data;
+    }catch(error){
+        return rejectWithValue(error.response?.data || 'An error occurred');
+    }
+});
+
 
 const productSlice = createSlice({
     name: 'products',
@@ -65,6 +73,7 @@ const productSlice = createSlice({
         addStatus: { success: false, error: null, loading: false },
         deleteStatus: { success: false, error: null, loading: false },
         productByCategory:{data:[],loading:false},
+        productSearch:{data:[],loading:false},
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -164,6 +173,18 @@ const productSlice = createSlice({
         builder.addCase(fetchProductByCategory.rejected, (state) => {
             state.productByCategory.loading = false;
         });
+
+        builder.addCase(searchProducts.pending, (state) => {
+            state.productSearch.loading = true;
+        });
+        builder.addCase(searchProducts.fulfilled, (state, action) => {
+            state.productSearch.loading = false;
+            state.productSearch.data = action.payload;
+        });
+        builder.addCase(searchProducts.rejected, (state) => {
+            state.productSearch.loading = false;
+        });
+
 
     },
 
