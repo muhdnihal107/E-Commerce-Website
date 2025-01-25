@@ -26,31 +26,32 @@ const Dashboard = () => {
 
 
 
-    <div className="p-6 bg-gray-100">
-    <h2 className="text-2xl font-bold mb-6">Dashboard Overview</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
-            <p className="text-gray-500">Total Products</p>
-            <h3 className="text-3xl font-bold text-gray-800">{data.length}</h3>
-            <p className="text-gray-500">in the last month</p>
+    <div className="p-6 bg-gradient-to-r from-gray-100 to-gray-200 min-h-screen">
+    <h2 className="text-3xl font-extrabold text-gray-800 mb-8 text-center">Dashboard Overview</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300">
+            <p className="text-gray-500 text-lg">Total Products</p>
+            <h3 className="text-4xl font-extrabold text-blue-600 transition-colors duration-200">{data.length}</h3>
+            <p className="text-gray-400 mt-2 text-sm">in the last month</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
-            <p className="text-gray-500">Total Orders</p>
-            <h3 className="text-3xl font-bold text-gray-800">{orders.data.length}</h3>
-            <p className="text-gray-500">in the last month</p>
+        <div className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300">
+            <p className="text-gray-500 text-lg">Total Orders</p>
+            <h3 className="text-4xl font-extrabold text-green-600 transition-colors duration-200">{orders.data.length}</h3>
+            <p className="text-gray-400 mt-2 text-sm">in the last month</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
-            <p className="text-gray-500">Total Customers</p>
-            <h3 className="text-3xl font-bold text-gray-800">{users.data.length}</h3>
-            <p className="text-gray-500">in the last month</p>
+        <div className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300">
+            <p className="text-gray-500 text-lg">Total Customers</p>
+            <h3 className="text-4xl font-extrabold text-yellow-600 transition-colors duration-200">{users.data.length}</h3>
+            <p className="text-gray-400 mt-2 text-sm">in the last month</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
-            <p className="text-gray-500">Total Revenue</p>
-            <h3 className="text-3xl font-bold text-gray-800">₹102241</h3>
-            <p className="text-gray-500">in the last month</p>
+        <div className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300">
+            <p className="text-gray-500 text-lg">Total Revenue</p>
+            <h3 className="text-4xl font-extrabold text-red-600 transition-colors duration-200">₹102241</h3>
+            <p className="text-gray-400 mt-2 text-sm">in the last month</p>
         </div>
     </div>
 </div>
+
 
   )
 }

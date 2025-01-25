@@ -53,9 +53,9 @@ export const deleteProduct = createAsyncThunk('data/deleteProduct', async (pk, {
     }
 });
 
-export const searchProducts = createAsyncThunk('data/searchproducts',async({searchProduct},{rejectWithValue})=>{
+export const searchProducts = createAsyncThunk('data/searchproducts',async(searchQuery,{rejectWithValue})=>{
     try{
-        const response = await axios.get(`http://127.0.0.1:8000/api/products/search/`,searchProduct);
+        const response = await axios.get(`http://127.0.0.1:8000/api/products/search/?search=${searchQuery}`);
         return response.data;
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');

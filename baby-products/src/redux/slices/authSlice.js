@@ -57,6 +57,19 @@ export const fetchUserdetail = createAsyncThunk('auth/fetchUserdetail', async (p
 
     );
     return response.data;
+    console.log(response.data,'from redudux user details');
+  } catch (error) {
+    return rejectWithValue(error.response?.data || 'Failed to fetch users');
+  }
+}
+);
+
+export const blockUser = createAsyncThunk('auth/blockuser', async (user_id, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/api/users/block/${user_id}`
+
+    );
+    return response.data;
   } catch (error) {
     return rejectWithValue(error.response?.data || 'Failed to fetch users');
   }
@@ -74,6 +87,7 @@ const authSlice = createSlice({
     error: null,
     users: { data: [], loading: false, error: null },
     userdetails: { data: [], loading: false, error: null },
+    blockUserState: { loading: false, error: null, success: false },
   },
   reducers: {
     resetError: (state) => {
@@ -165,12 +179,22 @@ const authSlice = createSlice({
       state.userdetails.loading = false;
       state.userdetails.data = action.payload;
     });
+
+
     builder.addCase(fetchUserdetail.rejected, (state, action) => {
       state.userdetails.loading = false;
       state.userdetails.error = action.payload;
     });
+    builder.addCase(blockUser.pending, (state) => {
+      state.blockUserState.loading = true;
+      state.blockUserState.error = null;
+      state.blockUserState.success = false;
+    });
+    builder.addCase(blockUser.fulfilled, (state, action) => {
+      state.blockUserState.loading = false;
+      state.blockUserState.success = true;
 
-
+    });
   },
 });
 

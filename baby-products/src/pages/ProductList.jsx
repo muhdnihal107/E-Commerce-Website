@@ -52,10 +52,59 @@ const ProductList = () => {
     dispatch(addToCart(itemData));
   };
 
- console.log(products,'all products');
- console.log(productByCategory,'products by category');
- console.log(productSearch, 'search products');
 
+if(productSearch?.data.length>0){
+  if (productSearch.loading){
+    return(
+      <div className="flex items-center justify-center h-screen bg-gray-100 opacity-60">
+      <div className="relative w-16 h-16">
+        {/* Outer Circle */}
+        <div className="absolute top-0 left-0 w-full h-full border-4 border-t-blue-500 border-r-transparent border-b-transparent border-l-blue-500 rounded-full animate-spin"></div>
+
+        {/* Inner Circle */}
+        <div className="absolute top-2 left-2 w-12 h-12 border-4 border-t-green-400 border-r-transparent border-b-transparent border-l-green-400 rounded-full animate-spin-slow"></div>
+      </div>
+    </div>
+
+    )
+  }else{
+    return(
+      <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-10">
+      {productSearch.data.map((product)=>(
+        <div
+                key={product.id}
+                className="bg-white opacity-90 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <Link to={`/product/${product.id}`} className="block">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-52 object-cover"
+                  />
+                </Link>
+                <div className="p-4">
+                  <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
+                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                    {product.description}
+                  </p>
+                  <p className="text-xl font-bold text-yellow-600 mt-4">₹{product.price}</p>
+                  <button
+                    className="w-full bg-green-700 text-white py-2 mt-4 rounded-lg hover:bg-orange-500 transition-colors duration-300"
+                    onClick={() => handleAddToCart(product.id)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+      ))}
+      </div>
+      </>
+    )
+
+  }
+  
+};
 
   return (
     <>
@@ -114,58 +163,35 @@ const ProductList = () => {
         ): products.data.length > 0 && selectedCategory==0 ? (
           products.data.map((product) => (
             <div
-              key={product.id}
-              className="bg-white opacity-90 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <Link to={`/product/${product.id}`} className="block">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-52 object-cover"
-                />
-              </Link>
-              <div className="p-4">
-                <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
-                <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-                  {product.description}
-                </p>
-                <p className="text-xl font-bold text-yellow-600 mt-4">₹{product.price}</p>
-                <button
-                  className="w-full bg-green-700 text-white py-2 mt-4 rounded-lg hover:bg-orange-500 transition-colors duration-300"
-                  onClick={() => handleAddToCart(product.id)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          ))
-        ) : productSearch.data.length > 0 ? (
-          productSearch.data.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white opacity-90 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <Link to={`/product/${product.id}`} className="block">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-52 object-cover"
-                />
-              </Link>
-              <div className="p-4">
-                <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
-                <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-                  {product.description}
-                </p>
-                <p className="text-xl font-bold text-yellow-600 mt-4">₹{product.price}</p>
-                <button
-                  className="w-full bg-green-700 text-white py-2 mt-4 rounded-lg hover:bg-orange-500 transition-colors duration-300"
-                  onClick={() => handleAddToCart(product.id)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+  key={product.id}
+  className="bg-white opacity-90 shadow-md rounded-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300 ease-out"
+>
+  <Link to={`/product/${product.id}`} className="block">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-52 object-cover hover:opacity-90 transition-opacity duration-300"
+    />
+  </Link>
+  <div className="p-4">
+    <h2 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
+      {product.name}
+    </h2>
+    <p className="text-sm text-gray-600 mt-2 line-clamp-2 hover:text-gray-800 transition-colors duration-300">
+      {product.description}
+    </p>
+    <p className="text-xl font-bold text-yellow-600 mt-4">
+      ₹{product.price}
+    </p>
+    <button
+      className="w-full bg-green-600 text-white py-2 mt-4 rounded-lg hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 focus:outline-none transition-all duration-300"
+      onClick={() => handleAddToCart(product.id)}
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>
+
           ))
         ) : (
           <div className="flex items-center justify-center h-screen bg-gray-100">

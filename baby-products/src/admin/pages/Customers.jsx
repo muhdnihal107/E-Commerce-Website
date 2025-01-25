@@ -23,8 +23,9 @@ const Customers = () => {
           <th className="py-3 px-6 text-left">User ID</th>
           <th className="py-3 px-6 text-left">Name</th>
           <th className="py-3 px-6 text-left">E-mail</th>
-          <th className="py-3 px-6 text-left">Password</th>
+          <th className="py-3 px-6 text-left">Block</th>
           <th className="py-3 px-6 text-center">Action</th>
+
         </tr>
       </thead>
       <tbody className="text-gray-600 text-sm font-light">
@@ -33,7 +34,9 @@ const Customers = () => {
             <td className="py-3 px-6 text-left whitespace-nowrap">{item.id}</td>
             <td className="py-3 px-6 text-left">{item.name}</td>
             <td className="py-3 px-6 text-left">{item.email}</td>
-            <td className="py-3 px-6 text-left">{item.password}</td>
+            <td className={`py-3 px-6 text-left ${
+    item.is_blocked ? 'text-red-500' : 'text-green-500'
+  }`}>{item.is_blocked?"blocked user":"not Blocked"}</td>
             <td className="py-3 px-6 text-center">
               <Link to={`/admin/customers/${item.id}`}>
                 <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200">

@@ -26,9 +26,7 @@ const handleChange=(e)=>{
     setNewProduct({...newProduct,[name]: value});
 };
 
-console.log(
-  newProduct
-);
+
 
 const handleSubmit = (e) => {
   e.preventDefault();

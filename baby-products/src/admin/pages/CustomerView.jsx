@@ -2,28 +2,39 @@ import React, { useContext, useEffect, useState } from 'react'
 import ProfileLogo from '../assets/account.png';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserdetail } from '../../redux/slices/authSlice';
+import { blockUser, fetchUserdetail } from '../../redux/slices/authSlice';
 import { fetchUserCartItems } from '../../redux/slices/cartSlice';
 
 const CustomerView = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const {data,loading,error} = useSelector((state)=>state.auth.userdetails);
+    const {success} = useSelector((state)=>state.auth.blockUserState)
     const {item} = useSelector((state)=>state.cart.user);
 
     useEffect(()=>{
       dispatch(fetchUserdetail(id));
     }
-    ,[id,dispatch]);
+    ,[id,dispatch,success]);
 
     useEffect(()=>{
       dispatch(fetchUserCartItems(id))
     },[dispatch]);
 
-
+    const handleblockedUser = ()=>{
+      dispatch(blockUser(id));
+    };
 
     if (loading) {
-        return <p>Loading user data...</p>;  
+      <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="relative w-16 h-16">
+        {/* Outer Circle */}
+        <div className="absolute top-0 left-0 w-full h-full border-4 border-t-blue-500 border-r-transparent border-b-transparent border-l-blue-500 rounded-full animate-spin"></div>
+
+        {/* Inner Circle */}
+        <div className="absolute top-2 left-2 w-12 h-12 border-4 border-t-green-400 border-r-transparent border-b-transparent border-l-green-400 rounded-full animate-spin-slow"></div>
+      </div>
+    </div>  
       };
 
       
@@ -39,15 +50,15 @@ const CustomerView = () => {
         <p className="text-lg font-semibold">Name: <span className="text-gray-700">{data.name}</span></p>
         <p className="text-lg font-semibold">E-Mail: <span className="text-gray-700">{data.email}</span></p>
       
-            {/* <p className="text-lg font-semibold">Block Status: <span className="text-gray-700">{data.blocked == true?'User is Blocked':'not Blocked'||null}</span></p> */}
+             <p className="text-lg font-semibold">Block Status: <span className="text-gray-700">{data.is_blocked?'Blocked User':'Not Blocked'||null}</span></p> 
       
 
-        {/* <div>
+         <div>
           <button className="mr-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors"
-           onClick={()=>blockedUser(userView.id,userView.blocked)}>{userView.blocked?'UnBlock':'Block'}</button>
+           onClick={handleblockedUser}>{data.is_blocked?'UnBlock':'Block'}</button>
           <button  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors"
-           onClick={()=>deleteUser(userView.id)}>Delete</button>
-        </div> */}
+           >Delete</button>
+        </div> 
         
       </div>
     </div>
