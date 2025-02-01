@@ -6,6 +6,8 @@ import { searchProducts } from '../redux/slices/productSlice'
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const {isAuthenticated} = useSelector((state)=>state.auth)
   const handleSearch = (e)=>{
       navigate('/product');
