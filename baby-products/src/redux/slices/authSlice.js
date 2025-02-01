@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL =import.meta.env.VITE_API_URL;
 
 const savedAuthData = JSON.parse(localStorage.getItem('authData'));
 
@@ -57,7 +57,6 @@ export const fetchUserdetail = createAsyncThunk('auth/fetchUserdetail', async (p
 
     );
     return response.data;
-    console.log(response.data,'from redudux user details');
   } catch (error) {
     return rejectWithValue(error.response?.data || 'Failed to fetch users');
   }

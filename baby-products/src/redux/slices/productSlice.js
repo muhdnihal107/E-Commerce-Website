@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice, Tuple } from "@reduxjs/toolkit";
 import axios from "axios";
-
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 export const fetchCategories = createAsyncThunk('data/fetchCategories', async () => {
-    const responce = await axios.get('http://127.0.0.1:8000/api/products/category/');
+    const responce = await axios.get(`${API_BASE_URL}/api/products/category/`);
     return responce.data;
 });
 
 export const fetchProductByCategory = createAsyncThunk('data/fetchproductbycategories', async (category_id,{rejectWithValue}) => {
    try {
-    const responce = await axios.get(`http://127.0.0.1:8000/api/products/category/${category_id}`);
+    const responce = await axios.get(`${API_BASE_URL}/products/category/${category_id}`);
     return responce.data;
 }catch(error){
     return rejectWithValue(error.response?.data || 'An error occurred');
@@ -17,18 +17,18 @@ export const fetchProductByCategory = createAsyncThunk('data/fetchproductbycateg
 });
 
 export const fetchProducts = createAsyncThunk('data/fetchproducts', async () => {
-    const responce = await axios.get('http://127.0.0.1:8000/api/products/list/');
+    const responce = await axios.get(`${API_BASE_URL}/api/products/list/`);
     return responce.data;
 });
 
 export const fetchProductdetail = createAsyncThunk('data/fetchproductdetail', async(productId)=>{
-    const responce = await axios.get(`http://127.0.0.1:8000/api/products/${productId}`);
+    const responce = await axios.get(`${API_BASE_URL}/api/products/${productId}`);
     return responce.data;
 });
 
 export const editProduct = createAsyncThunk('data/editproduct',async({productData,pk},{rejectWithValue})=>{
     try{
-        const response = await axios.patch(`http://127.0.0.1:8000/api/products/edit/${pk}`,productData);
+        const response = await axios.patch(`${API_BASE_URL}/api/products/edit/${pk}`,productData);
         return response.data;
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');
@@ -37,7 +37,7 @@ export const editProduct = createAsyncThunk('data/editproduct',async({productDat
 
 export const addProduct = createAsyncThunk('data/addproduct',async({newProduct},{rejectWithValue})=>{
     try{
-        const response = await axios.post(`http://127.0.0.1:8000/api/products/add/`,newProduct);
+        const response = await axios.post(`${API_BASE_URL}/api/products/add/`,newProduct);
         return response.data;
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');
@@ -46,7 +46,7 @@ export const addProduct = createAsyncThunk('data/addproduct',async({newProduct},
 
 export const deleteProduct = createAsyncThunk('data/deleteProduct', async (pk, { rejectWithValue }) => {
     try {
-        const response = await axios.delete(`http://127.0.0.1:8000/api/products/edit/${pk}`);
+        const response = await axios.delete(`${API_BASE_URL}/api/products/edit/${pk}`);
         return response.data; 
     } catch (error) {
         return rejectWithValue(error.response.data);
@@ -55,7 +55,7 @@ export const deleteProduct = createAsyncThunk('data/deleteProduct', async (pk, {
 
 export const searchProducts = createAsyncThunk('data/searchproducts',async(searchQuery,{rejectWithValue})=>{
     try{
-        const response = await axios.get(`http://127.0.0.1:8000/api/products/search/?search=${searchQuery}`);
+        const response = await axios.get(`${API_BASE_URL}/api/products/search/?search=${searchQuery}`);
         return response.data;
     }catch(error){
         return rejectWithValue(error.response?.data || 'An error occurred');

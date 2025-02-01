@@ -39,15 +39,11 @@ const Login = () => {
      }
    }; 
   };
- console.log(loading) 
   if(loading){
     return(
       <div className="flex items-center justify-center h-screen bg-gray-100 opacity-60">
         <div className="relative w-16 h-16">
-          {/* Outer Circle */}
           <div className="absolute top-0 left-0 w-full h-full border-4 border-t-blue-500 border-r-transparent border-b-transparent border-l-blue-500 rounded-full animate-spin"></div>
-  
-          {/* Inner Circle */}
           <div className="absolute top-2 left-2 w-12 h-12 border-4 border-t-green-400 border-r-transparent border-b-transparent border-l-green-400 rounded-full animate-spin-slow"></div>
         </div>
       </div>

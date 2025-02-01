@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../components/Footer';
-import { createOrder,fetchOrder } from '../redux/slices/orderSlice';
+import { createOrder,fetchOrder,verifyPayment } from '../redux/slices/orderSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {

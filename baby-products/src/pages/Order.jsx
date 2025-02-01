@@ -65,8 +65,7 @@ console.log(order);
           </div>
   
           <div className="order-total">
-            <h2>Subtotal:</h2>
-            <h2>Tax: ₹</h2>
+            
             <h2>Total Amount: ₹{(order.payment_amount)}</h2>
           </div>
         </div>

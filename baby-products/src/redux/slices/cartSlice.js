@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export const fetchCart = createAsyncThunk('cart/fetchcart', async (_, { rejectWithValue }) => {
     try {
@@ -43,7 +43,7 @@ export const clearCart = createAsyncThunk('cart/clearCart', async (_, { rejectWi
 export const updateCartItemQuantity = createAsyncThunk('cart/updateQuantity', async ({ updatedata, pk }, { rejectWithValue }) => {
     try {
         const token = localStorage.getItem('accessToken');
-        const response = await axios.patch(`http://127.0.0.1:8000/api/cart/quantity/${pk}`, updatedata,
+        const response = await axios.patch(`${API_BASE_URL}/api/cart/quantity/${pk}`, updatedata,
             { headers: { Authorization: `Bearer ${token}` }, }
         );
         return response.data;
