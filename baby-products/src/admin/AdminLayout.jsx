@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminHeader from './components/AdminHeader'
 import Sidebar from './components/Sidebar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import './admin.css'; 
+import { useSelector } from 'react-redux';
 
 
 const AdminLayout = () => {
+
+  const {user} = useSelector((state)=>state.auth);
+  const navigate=useNavigate()
+
+  useEffect(()=>{
+    if(user?.is_staff){
+
+    }else{
+      navigate('/')
+    }
+  },[])
   return (
     <div className="min-h-screen flex flex-col"> 
         <AdminHeader />
