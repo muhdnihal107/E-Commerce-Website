@@ -35,20 +35,7 @@ const Login = () => {
      if(user.is_staff){
        navigate('/admin');
      }else{
-      return(
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <h2 className="text-2xl font-bold text-green-600 mb-4">Loged In</h2>
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
-          >
-            <Link to={'/'}>Close</Link>
-            
-          </button>
-        </div>
-      </div>
-      )
-    
+       navigate('/');
      }
    }; 
   };
