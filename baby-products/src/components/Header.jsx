@@ -43,8 +43,8 @@ navigate('/register');
               className="border rounded px-2 py-1"
               onChange={handleSearch}
             />
-            <a className="text-gray-700 hover:text-blue-600"><Link to={'/cart'}><img className='w-8' src='src/assets/shopping.png'></img></Link></a>
-            <a onClick={handleUserClick} className="hover:text-blue-600"><img className='w-9' src='src/assets/user.png' alt="" /></a>
+            <a className="text-gray-700 hover:text-blue-600"><Link to={'/cart'}><img className='w-8'src='https://i.postimg.cc/bwy6kxqR/shopping.png' ></img></Link></a>
+            <a onClick={handleUserClick} className="hover:text-blue-600"><img className='w-9' src='https://i.postimg.cc/wj8fvCGn/user.png' alt="" /></a>
           </div>
         </div>
       </header>
