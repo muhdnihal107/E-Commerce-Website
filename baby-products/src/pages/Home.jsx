@@ -43,7 +43,7 @@ const Home = () => {
     </div>
     <div className="md:w-1/2 mt-10 md:mt-0">
       <img
-        src="https://ibb.co/fd3zD5K9"
+        src="https://m.media-amazon.com/images/I/41HYUZuHEwL._SX425_.jpg"
         alt="Baby Products"
         className="w-full h-96 object-cover rounded-lg shadow-2xl transform hover:scale-105 transition duration-300"
       />
