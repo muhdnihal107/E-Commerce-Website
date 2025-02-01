@@ -20,13 +20,14 @@ import AddProduct from "./admin/pages/AddProduct"
 import ProductView from "./admin/pages/ProductView"
 import CustomerView from "./admin/pages/CustomerView"
 import EditProduct from "./admin/pages/EditProduct"
+import { ToastContainer } from "react-toastify"
 
 function App() {
   
 
   return (
     <>
-    
+    <ToastContainer />
 
         
     <Routes>

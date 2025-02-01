@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginJWT } from '../redux/slices/authSlice';
 import { Link } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
@@ -31,11 +32,12 @@ const Login = () => {
 
   
      if (isAuthenticated){
-
+toast.success(`loged in ${user.name}`)
      if(user.is_staff){
        navigate('/admin');
      }else{
        navigate('/');
+
      }
    }; 
   };
