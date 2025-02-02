@@ -96,35 +96,37 @@ const ProductList = () => {
 
   return (
     <>
-      <div className="category-filter mb-6 flex justify-end">
+      <div className="category-filter mb-8 flex justify-end">
         <select
           name="category"
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="w-40 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 ease-in-out hover:border-blue-400 hover:bg-blue-50"
+          className="w-48 p-3 border-2 border-indigo-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 ease-in-out hover:border-indigo-400 bg-white hover:bg-indigo-50 text-gray-700 cursor-pointer"
         >
-          <option className="transition-colors duration-200">Select Category</option>
-          <option value="0" className="transition-colors duration-200 hover:bg-blue-100">
+          <option className="bg-white text-gray-500">Select Category</option>
+          <option value="0" className="bg-white text-gray-700 hover:bg-indigo-100">
             All
           </option>
           {categories.data.map((category) => (
-            <option key={category.id} value={category.id} className="transition-colors duration-200 hover:bg-blue-100">
+            <option key={category.id} value={category.id} className="bg-white text-gray-700 hover:bg-indigo-100">
               {category.name}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-6 py-12 bg-gradient-to-br from-gray-50 to-indigo-50">
         {productsToRender.length > 0 ? (
           productsToRender.map((product) => renderProductCard(product))
         ) : (
-          <div className="flex items-center justify-center h-screen bg-gray-100">
-            <div className="relative w-16 h-16">
+          <div className="col-span-full flex items-center justify-center h-96 bg-white rounded-xl shadow-lg">
+            <div className="relative w-20 h-20">
               {/* Outer Circle */}
-              <div className="absolute top-0 left-0 w-full h-full border-4 border-t-blue-500 border-r-transparent border-b-transparent border-l-blue-500 rounded-full animate-spin"></div>
+              <div className="absolute top-0 left-0 w-full h-full border-4 border-t-indigo-500 border-r-transparent border-b-transparent border-l-indigo-500 rounded-full animate-spin"></div>
               {/* Inner Circle */}
-              <div className="absolute top-2 left-2 w-12 h-12 border-4 border-t-green-400 border-r-transparent border-b-transparent border-l-green-400 rounded-full animate-spin-slow"></div>
+              <div className="absolute top-2 left-2 w-16 h-16 border-4 border-t-purple-400 border-r-transparent border-b-transparent border-l-purple-400 rounded-full animate-spin-slow"></div>
+              {/* Center Circle */}
+              <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full animate-pulse"></div>
             </div>
           </div>
         )}
