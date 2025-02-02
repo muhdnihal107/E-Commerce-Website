@@ -7,7 +7,7 @@
   
   body {
     /*overflow-x: hidden; */
-    background: linear-gradient(to bottom right, #131c61de, #922323);/* Prevent horizontal scroll */
+    background-color: #2a9d8f;
     font-family: 'Arial', sans-serif;
   }
   
