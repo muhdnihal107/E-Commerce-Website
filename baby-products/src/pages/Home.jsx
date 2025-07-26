@@ -9,28 +9,12 @@ const Home = () => {
   return (
     <>
     
-    {/* <div className='home'>
-      <div className='home-head-con'>
-        <div className='home-text1'><p>Flat 30% Off + Cashback!</p></div>
-        <div className='home-text2'>
-          <h1>Baby Essential</h1>
-          <h1>Fashion and Nursery</h1>
-          </div>
-        <div className='home-text3'><p>Fermentum, cursus ultrices porttitor tincidunt suscipit quam facilisis sit massa pellentesque mi quis elit elementum tristique urna.
-
-* Enim cras quam et nullam risus nec tincidunt mattis nunc.</p></div>
-        <div className='home-btn'><button>Shop Now</button></div>
-      </div>
-      <div className='home-img-con'>
-        <img src={baby1img} alt="" />
-      </div>
-    </div> */}
 
 
 
 <div className="bg-gray-100 font-sans min-h-screen">
   {/* Hero Section */}
-  <section className="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white h-screen flex items-center">
+  <section className="relative bg-gradient-to-r from-[#4d79c0] to-[#cbb1e2] text-white h-screen flex items-center">
   <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
     <div className="md:w-1/2">
       <h1 className="text-5xl font-bold mb-6 animate-fade-in">Welcome to BabyStore</h1>
@@ -96,7 +80,7 @@ const Home = () => {
   </section>
 
   {/* Offer Section */}
-  <section className="bg-blue-700 text-white py-16">
+  <section className="bg-[#884a14a1] text-white py-16">
     <div className="container mx-auto px-6">
       <h2 className="text-3xl font-bold text-center mb-12">Exclusive Offers</h2>
       <div className="flex flex-col md:flex-row gap-8 justify-center">
@@ -137,34 +121,7 @@ const Home = () => {
     </div>
   </section>
 
-  {/* Footer */}
-  <footer className="bg-gray-800 text-white py-12">
-    <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <h3 className="text-2xl font-bold mb-4">BabyStore</h3>
-        <p className="text-gray-400">Your one-stop shop for baby products.</p>
-        <p className="text-gray-400 mt-2">123 Fifth Ave, New York, NY 12004.</p>
-        <p className="text-gray-400">+1 123 456 78 90</p>
-        <p className="text-gray-400">mail@example.com</p>
-      </div>
-      <div>
-        <h4 className="text-xl font-bold mb-4">Quick Links</h4>
-        <nav className="space-y-2">
-          <a href="#" className="text-gray-400 hover:text-white transition duration-300">About Us</a>
-          <a href="#" className="text-gray-400 hover:text-white transition duration-300">FAQs</a>
-          <a href="#" className="text-gray-400 hover:text-white transition duration-300">Contact</a>
-        </nav>
-      </div>
-      <div>
-        <h4 className="text-xl font-bold mb-4">Follow Us</h4>
-        <div className="flex space-x-4">
-          <a href="#" className="text-gray-400 hover:text-white transition duration-300">Facebook</a>
-          <a href="#" className="text-gray-400 hover:text-white transition duration-300">Twitter</a>
-          <a href="#" className="text-gray-400 hover:text-white transition duration-300">Instagram</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+ 
 </div>
     <Footer />
     </>

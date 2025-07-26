@@ -11,6 +11,8 @@ const Footer = () => {
  <div className='info-con'>
     <div className='info-1'>
       <div className='info-div'>
+                <h3 className="text-2xl text-white font-bold mb-4">BabyStore</h3>
+
          <p>123 Fifth Ave, New</p>
          <p>York, NY 12004.</p>
          <p>+1 123 456 78 90</p>
